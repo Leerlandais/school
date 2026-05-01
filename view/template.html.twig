@@ -1,10 +1,193 @@
 {% extends 'base.html.twig' %}
-{% block stylesheet %}
-    <link href="../dist/tailwind.min.css" rel="stylesheet">
-{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Code Snippets by Leerlandais">
+    <meta property="og:description" content="A collection of useful code">
+    <meta property="og:image" content="https://leerlandais.com/favicon.ico">
+    <meta property="og:url" content="https://leerlandais.com">
+    <meta property="og:type" content="website">
+    {% block stylesheet %}
+        <link href="../dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    {% endblock %} {# end stylesheets #}
+{% endblock %} {# end head #}
+
 {% block title %}School{% endblock %}
-{% block bodyClass %}h-screen bg-amber-50{% endblock %}
+
+{% block mainClass %} 'flex flex-col text-center mx-auto w-fit' {% endblock %}
+{% block bodyClass %}"bg-gray-200"{% endblock %}
+{% block header %}
+    <nav class="bg-blue-500 p-4 flex items-center justify-between">
+        <div>
+            <a href="./"><h1 class="text-white text-xl font-semibold">English Lessons</h1></a>
+        </div>
+        <div class="flex items-center space-x-4">
+            {% block headerLink %}<a href="?route=login"><span class="text-white">Login</span></a>{% endblock %}
+            <i class="fas fa-user-circle text-white text-2xl"></i>
+        </div>
+    </nav>
+{% endblock %} {# end header #}
+
+
+{% block sideBar %}
+    <aside class="bg-gray-800 text-white w-64 min-h-screen p-4">
+        <nav>
+            <ul class="space-y-2">
+
+                {% block sideBarPublic %}
+                    <li class="option-with-dropdown">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>PHP</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                        <ul class="dropdown ml-4 hidden">
+                            <li class="option-with-dropdown-inner">
+                                <a href="?route=select&type=call">
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                        <div class="flex items-center">
+                                            <span>Calls</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="option-with-dropdown-inner">
+                                <a href="?route=select&type=func">
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                        <div class="flex items-center">
+                                            <span>Functions</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Javascript</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                        <ul class="dropdown ml-4 hidden">
+                            <li class="option-with-dropdown-inner">
+                                <a href="?route=select&type=java">
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                        <div class="flex items-center">
+                                            <span>Main</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="option-with-dropdown-inner">
+                                <a href="?route=select&type=xtra">
+                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                        <div class="flex items-center">
+                                            <span>Xtra</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=html">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>HTML</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=unix">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>Linux</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=reac">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>React</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=node">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>Node</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=bash">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>Bash Scripts</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- ALWAYS LEAVE OTHER FIELD HERE -->
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=else">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>Other</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- ALWAYS LEAVE EXES FIELD HERE -->
+                    <li class="option-with-dropdown">
+                        <a href="?route=select&type=exes">
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    <span>Executables</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endblock %} {# end sideBarPublic #}
+                {% block sideBarAdmin %}
+                    <!-- Add more links for the side navigation -->
+
+                {% endblock %}
+            </ul>
+        </nav>
+    </aside>
+{% endblock %} {# end sideBar #}
+{% block footer %}
+    <div class="flex place-self-center">
+        &copy; <a href="https://leerlandais.com" target="_blank">Leerlandais 2024</a>
+    </div>
+{% endblock %}
+
 
 {% block javascript %}
 <script src="{{ PUB_DIR }}scripts/tableSorter.js"></script>
+<script src="../public/scripts/sideBarScript.js"></script>
 {% endblock %}
