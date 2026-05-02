@@ -42,7 +42,15 @@ class ConnectionController extends Abstract\AbstractController
         global $sessionRole, $systemMessage;
         if(isset($_POST["unset:loginUser"])) {
             $cleanedData = $this->preparePostData($_POST);
-            die(var_dump($cleanedData, $_POST));
+            $loginAttempt = $this->connectionManager->loginUser($cleanedData);
+            if(!$loginAttempt) {
+                $_SESSION["systemMessage"] = "Login failed";
+                header("Location: ./");
+                exit;
+            }else {
+                header("Location: ?route=admin");
+            }
+
         }
         echo $this->twig->render('public/public.login.html.twig', [
             'systemMessage' => $systemMessage,

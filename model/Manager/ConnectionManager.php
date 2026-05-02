@@ -17,5 +17,21 @@ class ConnectionManager extends AbstractManager
         }
         session_destroy();
     }
+
+    public function loginUser(array $userData) : bool
+    {
+        $stmt = $this->db->prepare("SELECT * FROM school_users WHERE user_name = :name");
+        $stmt->execute(['name' => $userData['user_name']]);
+        $user = $stmt->fetch();
+        if($user && password_verify($userData['user_pass'], $user['user_pass']))
+        {
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['user_name'] = $user['user_name'];
+            $_SESSION['user_role'] = $user['user_role'];
+            return true;
+        }
+
+        return false;
+    }
     
 }
