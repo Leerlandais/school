@@ -9,6 +9,7 @@
 </head>
 {% block body %}
     <body class={% block bodyClass %}{% endblock %}>
+    {% block systemMessage %}{% endblock %}
     {% block header %}{% endblock %}
     <div class="flex">
         {% block sideBar %}{% endblock %}
