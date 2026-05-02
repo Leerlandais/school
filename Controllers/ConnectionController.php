@@ -36,4 +36,18 @@ class ConnectionController extends Abstract\AbstractController
             'sessionRole' => $sessionRole
         ]);
     }
+
+    public function login() : void
+    {
+        global $sessionRole, $systemMessage;
+        if(isset($_POST["unset:loginUser"])) {
+            $cleanedData = $this->preparePostData($_POST);
+            die(var_dump($cleanedData, $_POST));
+        }
+        echo $this->twig->render('public/public.login.html.twig', [
+            'systemMessage' => $systemMessage,
+            'sessionRole' => $sessionRole,
+            'csrfToken' => $this->csrfToken
+        ]);
+    }
 }
