@@ -180,14 +180,9 @@
         </nav>
     </aside>
 {% endblock %} {# end sideBar #}
-{% block footer %}
-    <div class="flex place-self-center">
-        &copy; <a href="https://leerlandais.com" target="_blank">Leerlandais 2024</a>
-    </div>
-{% endblock %}
 
 
 {% block javascript %}
 <script src="{{ PUB_DIR }}scripts/tableSorter.js"></script>
-<script src="../public/scripts/sideBarScript.js"></script>
+<script src="{{ PUB_DIR }}scripts/sideBarScript.js"></script>
 {% endblock %}
