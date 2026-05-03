@@ -14,7 +14,7 @@ if (isset($_SESSION["systemMessage"])) {
     $systemMessage = "";
 }
 $sessionRole = "";
-if(isset($_SESSION['roles'])) $sessionRole = $_SESSION['roles'];
+if(isset($_SESSION['user_role'])) $sessionRole = $_SESSION['user_role'];
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Factory\ConnectionFactory;

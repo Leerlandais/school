@@ -12,6 +12,9 @@ $router->registerRoute("logout", ConnectionController::class, "logout");
 $router->registerRoute("login", ConnectionController::class, "login");
 $router->registerRoute('404', ErrorController::class, 'error404');
 
+// PRIVATE ROUTES
+$router->registerRoute("admin", AdminController::class, "adminControls");
+
 
 
 
