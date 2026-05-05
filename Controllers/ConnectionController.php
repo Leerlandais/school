@@ -31,9 +31,14 @@ class ConnectionController extends Abstract\AbstractController
     public function index() : void
     {
         global $sessionRole, $systemMessage;
+        $balise = [
+            "type" => "h1",
+            "class" => "text-center text-4xl",
+        ];
         echo $this->twig->render('public/public.index.html.twig', [
             'systemMessage' => $systemMessage,
-            'sessionRole' => $sessionRole
+            'sessionRole' => $sessionRole,
+            'balise' => $balise
         ]);
     }
 
