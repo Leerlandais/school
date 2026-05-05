@@ -42,7 +42,8 @@
             <a href="./"><h1 class="text-white text-xl font-semibold">English Lessons</h1></a>
         </div>
         <div class="flex items-center space-x-4">
-            {% block headerLink %}<a href="?route=login"><span class="text-white">Login</span></a>{% endblock %}
+
+            {% block headerLink %}<a href="?route={{ sessionRole? "logout" : "login" }}"><span class="text-white">{{ sessionRole? "Logout" : "Login" }}</span></a>{% endblock %}
             <i class="fas fa-user-circle text-white text-2xl"></i>
         </div>
     </nav>
