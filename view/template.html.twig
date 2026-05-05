@@ -54,8 +54,6 @@
     <aside class="bg-gray-800 text-white w-64 min-h-screen p-4">
         <nav>
             <ul class="space-y-2">
-
-                {% block sideBarPublic %}
                     <li class="option-with-dropdown">
                         <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                             <div class="flex items-center">
@@ -69,11 +67,12 @@
                                 <a href="?route=select&type=call">
                                     <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                                         <div class="flex items-center">
-                                            <span>Calls</span>
+                                            <span class="ps-4">Calls</span>
                                         </div>
                                     </div>
                                 </a>
                             </li>
+                            {#
                             <li class="option-with-dropdown-inner">
                                 <a href="?route=select&type=func">
                                     <div class="flex items-center justify-between p-2 hover:bg-gray-700">
@@ -83,8 +82,10 @@
                                     </div>
                                 </a>
                             </li>
+                            #}
                         </ul>
                     </li>
+                {#
                     <li class="option-with-dropdown">
                         <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                             <div class="flex items-center">
@@ -186,11 +187,7 @@
                             </div>
                         </a>
                     </li>
-                {% endblock %} {# end sideBarPublic #}
-                {% block sideBarAdmin %}
-                    <!-- Add more links for the side navigation -->
-
-                {% endblock %}
+                #}
             </ul>
         </nav>
     </aside>
