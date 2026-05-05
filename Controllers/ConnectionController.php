@@ -33,7 +33,7 @@ class ConnectionController extends Abstract\AbstractController
         global $sessionRole, $systemMessage;
         $balise = [
             "type" => "h1",
-            "class" => "text-center text-4xl",
+            "class" => "head-1-center", // this is a self-defined TW class (variants include head-1-left, head-2-... etc)
         ];
         echo $this->twig->render('public/public.index.html.twig', [
             'systemMessage' => $systemMessage,
