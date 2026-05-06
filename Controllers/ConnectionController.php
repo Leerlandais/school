@@ -46,6 +46,7 @@ class ConnectionController extends Abstract\AbstractController
     {
         global $sessionRole, $systemMessage;
         if(isset($_POST["unset:loginUser"])) {
+            $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
             $cleanedData = $this->preparePostData($_POST);
             $loginAttempt = $this->connectionManager->loginUser($cleanedData);
             if(!$loginAttempt) {
