@@ -10,9 +10,10 @@ class AdminController extends Abstract\AbstractController
     {
         global $sessionRole, $systemMessage;
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+
         echo $this->twig->render('private/private.admin.html.twig', [
             "sessionRole" => $sessionRole,
-            "systemMessage" => $systemMessage
+            "systemMessage" => $systemMessage,
         ]);
     }
 }
