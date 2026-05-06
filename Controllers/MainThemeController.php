@@ -3,9 +3,16 @@
 namespace Controllers;
 
 use Controllers\Abstract\AbstractController;
+use Factory\ManagerFactory;
+use Twig\Environment;
 
 class MainThemeController extends Abstract\AbstractController
 {
+    private Main
+    public function __construct(Environment $twig, ManagerFactory $managerFactory)
+    {
+        parent::__construct($twig, $managerFactory);
+    }
     public function addMainTheme() : void
     {
         global $sessionRole, $systemMessage;
@@ -15,7 +22,7 @@ class MainThemeController extends Abstract\AbstractController
         if(isset($_POST["unset:addTheme"])) {
            $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
            $cleanedData = $this->preparePostData($_POST);
-           die(var_dump($cleanedData));
+
         }
         echo $this->twig->render('private/theme.addMain.html.twig', [
             "sessionRole" => $sessionRole,
