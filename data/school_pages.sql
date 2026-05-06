@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 06, 2026 at 03:53 PM
+-- Generation Time: May 06, 2026 at 04:04 PM
 -- Server version: 8.4.7
 -- PHP Version: 8.4.15
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `school_pages`;
 CREATE TABLE IF NOT EXISTS `school_pages` (
   `page_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `page_category` smallint UNSIGNED NOT NULL,
   `page_title` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
   `page_slug` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
   `page_created` datetime NOT NULL,
