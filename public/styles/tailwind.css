@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 /* Personalised TW Classes go here */
+
+.head-1-center {
+    @apply text-center text-4xl font-bold;
+}

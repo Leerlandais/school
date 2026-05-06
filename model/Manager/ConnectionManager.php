@@ -2,6 +2,8 @@
 
 namespace model\Manager;
 use model\Abstract\AbstractManager;
+use model\Mapping\SchoolUsersMapping;
+
 class ConnectionManager extends AbstractManager
 {
     public function logoutUser() : void
@@ -18,7 +20,7 @@ class ConnectionManager extends AbstractManager
         session_destroy();
     }
 
-    public function loginUser(array $userData) : bool
+    public function loginUser(array $userData) : bool|SchoolUsersMapping
     {
         $stmt = $this->db->prepare("SELECT * FROM school_users WHERE user_name = :name");
         $stmt->execute(['name' => $userData['user_name']]);
@@ -28,7 +30,7 @@ class ConnectionManager extends AbstractManager
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['user_role'] = $user['user_role'];
-            return true;
+            return new SchoolUsersMapping($user);
         }
 
         return false;

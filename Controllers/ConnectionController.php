@@ -38,7 +38,7 @@ class ConnectionController extends Abstract\AbstractController
         echo $this->twig->render('public/public.index.html.twig', [
             'systemMessage' => $systemMessage,
             'sessionRole' => $sessionRole,
-            'balise' => $balise
+            'tag' => $balise
         ]);
     }
 
