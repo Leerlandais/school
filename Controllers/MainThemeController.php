@@ -4,25 +4,27 @@ namespace Controllers;
 
 use Controllers\Abstract\AbstractController;
 use Factory\ManagerFactory;
+use model\Manager\MainThemeManager;
 use Twig\Environment;
 
 class MainThemeController extends Abstract\AbstractController
 {
-    private Main
+    private MainThemeManager $mainThemeManager;
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
     {
         parent::__construct($twig, $managerFactory);
+        $this->mainThemeManager = $this->getManager(MainThemeManager::class);
     }
     public function addMainTheme() : void
     {
         global $sessionRole, $systemMessage;
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
 
-
         if(isset($_POST["unset:addTheme"])) {
-           $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
+       //    $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
            $cleanedData = $this->preparePostData($_POST);
-
+           $insertTheme = $this->mainThemeManager->addTheme($cleanedData);
+           die(var_dump($insertTheme));
         }
         echo $this->twig->render('private/theme.addMain.html.twig', [
             "sessionRole" => $sessionRole,

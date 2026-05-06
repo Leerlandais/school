@@ -131,9 +131,9 @@ abstract class AbstractController
          * If token is correct, it is destroyed and replaced
          */
         if (!isset($token) || $token != $_SESSION['csrf_token']) {
-            $_SESSION = [];
+         //   $_SESSION = [];
             $_SESSION["systemMessage"] = "CSRF Token incorrect";
-            header("Location: ?route=home");
+            header("Location: ./");
             die();
         }
         unset($_SESSION['csrf_token']);

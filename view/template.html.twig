@@ -43,7 +43,14 @@
         </div>
         <div class="flex items-center space-x-4">
 
-            {% block headerLink %}<a href="?route={{ sessionRole? "logout" : "login" }}"><span class="text-white">{{ sessionRole? "Logout" : "Login" }}</span></a>{% endblock %}
+            {% block headerLink %}
+                <a href="?route={{ sessionRole ? "admin" : "" }}">
+                    <span class="text-white">{{ sessionRole ? "Admin" : "" }}</span>
+                </a>
+                <a href="?route={{ sessionRole? "logout" : "login" }}">
+                    <span class="text-white">{{ sessionRole ? "Logout" : "Login" }}</span>
+                </a>
+            {% endblock %}
             <i class="fas fa-user-circle text-white text-2xl"></i>
         </div>
     </nav>
@@ -54,139 +61,139 @@
     <aside class="bg-gray-800 text-white w-64 min-h-screen p-4">
         <nav>
             <ul class="space-y-2">
-                    <li class="option-with-dropdown">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>PHP</span>
-                            </div>
-                            <i class="fas fa-chevron-down text-xs"></i>
+                <li class="option-with-dropdown">
+                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt mr-2"></i>
+                            <span>PHP</span>
                         </div>
-                        <ul class="dropdown ml-4 hidden">
-                            <li class="option-with-dropdown-inner">
-                                <a href="?route=select&type=call">
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                        <div class="flex items-center">
-                                            <span class="ps-4">Calls</span>
-                                        </div>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                    <ul class="dropdown ml-4 hidden">
+                        <li class="option-with-dropdown-inner">
+                            <a href="?route=select&type=call">
+                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                    <div class="flex items-center">
+                                        <span class="ps-4">Calls</span>
                                     </div>
-                                </a>
-                            </li>
-                            {#
-                            <li class="option-with-dropdown-inner">
-                                <a href="?route=select&type=func">
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                        <div class="flex items-center">
-                                            <span>Functions</span>
-                                        </div>
+                                </div>
+                            </a>
+                        </li>
+                        {#
+                        <li class="option-with-dropdown-inner">
+                            <a href="?route=select&type=func">
+                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                    <div class="flex items-center">
+                                        <span>Functions</span>
                                     </div>
-                                </a>
-                            </li>
-                            #}
-                        </ul>
-                    </li>
+                                </div>
+                            </a>
+                        </li>
+                        #}
+                    </ul>
+                </li>
                 {#
-                    <li class="option-with-dropdown">
+                <li class="option-with-dropdown">
+                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt mr-2"></i>
+                            <span>Javascript</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                    <ul class="dropdown ml-4 hidden">
+                        <li class="option-with-dropdown-inner">
+                            <a href="?route=select&type=java">
+                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                    <div class="flex items-center">
+                                        <span>Main</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="option-with-dropdown-inner">
+                            <a href="?route=select&type=xtra">
+                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                                    <div class="flex items-center">
+                                        <span>Xtra</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=html">
                         <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                             <div class="flex items-center">
                                 <i class="fas fa-file-alt mr-2"></i>
-                                <span>Javascript</span>
+                                <span>HTML</span>
                             </div>
-                            <i class="fas fa-chevron-down text-xs"></i>
                         </div>
-                        <ul class="dropdown ml-4 hidden">
-                            <li class="option-with-dropdown-inner">
-                                <a href="?route=select&type=java">
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                        <div class="flex items-center">
-                                            <span>Main</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="option-with-dropdown-inner">
-                                <a href="?route=select&type=xtra">
-                                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                        <div class="flex items-center">
-                                            <span>Xtra</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=html">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>HTML</span>
-                                </div>
+                    </a>
+                </li>
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=unix">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Linux</span>
                             </div>
-                        </a>
-                    </li>
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=unix">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>Linux</span>
-                                </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=reac">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>React</span>
                             </div>
-                        </a>
-                    </li>
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=reac">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>React</span>
-                                </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=node">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Node</span>
                             </div>
-                        </a>
-                    </li>
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=node">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>Node</span>
-                                </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=bash">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Bash Scripts</span>
                             </div>
-                        </a>
-                    </li>
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=bash">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>Bash Scripts</span>
-                                </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- ALWAYS LEAVE OTHER FIELD HERE -->
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=else">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Other</span>
                             </div>
-                        </a>
-                    </li>
-                    <!-- ALWAYS LEAVE OTHER FIELD HERE -->
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=else">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>Other</span>
-                                </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- ALWAYS LEAVE EXES FIELD HERE -->
+                <li class="option-with-dropdown">
+                    <a href="?route=select&type=exes">
+                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                <span>Executables</span>
                             </div>
-                        </a>
-                    </li>
-                    <!-- ALWAYS LEAVE EXES FIELD HERE -->
-                    <li class="option-with-dropdown">
-                        <a href="?route=select&type=exes">
-                            <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                <div class="flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    <span>Executables</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+                        </div>
+                    </a>
+                </li>
                 #}
             </ul>
         </nav>
