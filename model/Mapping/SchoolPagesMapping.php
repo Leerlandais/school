@@ -11,6 +11,11 @@ class SchoolPagesMapping extends AbstractMapping
         set => $page_id = $value;
     }
 
+    protected int $page_category {
+        get => $page_category;
+        set => $page_category = $value;
+    }
+
     protected string $page_title {
         get => $page_title;
         set => $page_title = $value;
@@ -31,6 +36,11 @@ class SchoolPagesMapping extends AbstractMapping
     public function getPageId(): int
     {
         return $this->page_id;
+    }
+
+    public function getPageCategory(): int
+    {
+        return $this->page_category;
     }
 
     public function getPageSlug(): string
