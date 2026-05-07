@@ -48,6 +48,7 @@ class ConnectionController extends Abstract\AbstractController
             'sessionRole' => $sessionRole,
             'tag' => $balise,
             "mainThemes" => $mainThemes,
+            "subThemes" => $subThemes,
         ]);
     }
 

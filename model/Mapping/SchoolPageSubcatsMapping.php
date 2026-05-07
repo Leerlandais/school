@@ -2,7 +2,9 @@
 
 namespace model\Mapping;
 
-class SchoolPageSubcatsMapping
+use model\Abstract\AbstractMapping;
+
+class SchoolPageSubcatsMapping extends AbstractMapping
 {
     public int $subcat_id {
         get => $this->_subcat_id;

@@ -72,15 +72,18 @@
                         {% endfor %}
                     </div>
                     <ul class="dropdown ml-4 hidden">
+                        {% for sub in subThemes %}
                         <li class="option-with-dropdown-inner">
                             <a href="?route=select&type=call">
                                 <div class="flex items-center justify-between p-2 hover:bg-gray-700">
                                     <div class="flex items-center">
-                                        <span class="ps-4">Calls</span>
+                                        <span class="ps-4">{{ sub.subcat_name }}</span>
                                     </div>
+                                    <i class="fas fa-chevron-down text-xs"></i>
                                 </div>
                             </a>
                         </li>
+                        {% endfor %}
                         {#
                         <li class="option-with-dropdown-inner">
                             <a href="?route=select&type=func">
