@@ -1,0 +1,53 @@
+{% extends "template.html.twig" %}
+
+{% block title %}{{ parent() }} | Add Sub Theme{% endblock %}
+
+{% block content %}
+    <div class="mb-5 mt-12">
+        <div class="container mx-auto max-w-sm shadow-md dark:shadow-white px-6 sm:px-10 bg-white dark:bg-gray-800 border-blue-400 rounded-md">
+            <div>
+                <h1 class="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                    Add Sub Theme
+                </h1>
+                <form action="" method="POST">
+                    <label>
+                        <input type="text" class="hidden" name="csrf:csrf_token" value="{{ csrfToken }}">
+                    </label>
+                    <div class="my-2">
+                        <label for="themeName"
+                               class="text-sm sm:text-md font-bold text-gray-700 dark:text-gray-300">
+                            Name
+                        </label>
+                        <input type="text"
+                               name="str:subcat_name"
+                               class="input-standard"
+                               id="themeName"
+                               autofocus
+                               required>
+                    </div>
+                    <div class="my-2">
+                        <label for="themeParent"
+                               class="text-sm sm:text-md font-bold text-gray-700 dark:text-gray-300">
+                            Parent
+                        </label>
+                        <select class="select-standard" name="int:subcat_parent" id="themeParent" required>
+                            <option value=""></option>
+                            {% for theme in mainThemes %}
+                                <option value="{{ theme.cat_id }}">{{ theme.cat_title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button class="px-4 py-1 bg-blue-400 rounded-md
+                            text-black text-sm sm:text-lg shadow-md mb-4"
+                                name="unset:addSubTheme"
+                                type="submit">
+                            Add
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

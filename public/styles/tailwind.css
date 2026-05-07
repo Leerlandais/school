@@ -6,3 +6,17 @@
 .head-1-center {
     @apply text-center text-4xl font-bold;
 }
+
+.input-standard {
+    @apply block w-full border border-blue-400
+    outline-blue-800 px-2 py-2 text-sm rounded-md
+    my-2 bg-white dark:bg-gray-700 text-gray-900
+    dark:text-white;
+}
+
+.select-standard {
+    @apply block w-fit border border-blue-400
+    outline-blue-800 px-4 py-2 mx-auto text-sm
+    rounded-md my-2 bg-white dark:bg-gray-700
+    text-gray-900 dark:text-white
+}

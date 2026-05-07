@@ -15,6 +15,7 @@ $router->registerRoute('404', ErrorController::class, 'error404');
 // PRIVATE ROUTES
 $router->registerRoute("admin", AdminController::class, "adminControls");
 $router->registerRoute("addMainTheme", MainThemeController::class, "addMainTheme");
+$router->registerRoute("addSubTheme", SubThemeController::class, "addSubTheme");
 
 
 

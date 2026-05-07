@@ -21,7 +21,7 @@ class MainThemeController extends Abstract\AbstractController
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
 
         if(isset($_POST["unset:addTheme"])) {
-       //    $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
+           $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
            $cleanedData = $this->preparePostData($_POST);
            $insertTheme = $this->mainThemeManager->addTheme($cleanedData);
            die(var_dump($insertTheme));
