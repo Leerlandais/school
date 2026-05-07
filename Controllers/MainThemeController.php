@@ -24,7 +24,6 @@ class MainThemeController extends Abstract\AbstractController
            $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
            $cleanedData = $this->preparePostData($_POST);
            $insertTheme = $this->mainThemeManager->addTheme($cleanedData);
-           die(var_dump($insertTheme));
         }
         echo $this->twig->render('private/theme.addMain.html.twig', [
             "sessionRole" => $sessionRole,
