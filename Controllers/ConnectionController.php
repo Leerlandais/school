@@ -6,6 +6,7 @@ namespace Controllers;
 use Factory\ManagerFactory;
 use model\Manager\ConnectionManager;
 use model\Manager\MainThemeManager;
+use model\Manager\SubThemeManager;
 use Twig\Environment;
 
 
@@ -13,6 +14,7 @@ class ConnectionController extends Abstract\AbstractController
 {
     private ConnectionManager $connectionManager;
     private MainThemeManager $mainThemeManager;
+    private SubThemeManager $subThemeManager;
 
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
     {
@@ -23,6 +25,7 @@ class ConnectionController extends Abstract\AbstractController
         parent::__construct($twig, $managerFactory);
         $this->connectionManager = $this->getManager(ConnectionManager::class);
         $this->mainThemeManager = $this->getManager(MainThemeManager::class);
+        $this->subThemeManager = $this->getManager(SubThemeManager::class);
     }
     public function logout()
     {
@@ -39,6 +42,7 @@ class ConnectionController extends Abstract\AbstractController
             "class" => "head-1-center", // this is a self-defined TW class (variants include head-1-left, head-2-... etc)
         ];
         $mainThemes = $this->mainThemeManager->getThemes();
+        $subThemes = $this->subThemeManager->getSubThemes();
         echo $this->twig->render('public/public.index.html.twig', [
             'systemMessage' => $systemMessage,
             'sessionRole' => $sessionRole,
