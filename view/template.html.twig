@@ -61,145 +61,64 @@
     <aside class="bg-gray-800 text-white w-64 min-h-screen p-4">
         <nav>
             <ul class="space-y-2">
-                <li class="option-with-dropdown">
-                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                        {% for theme in mainThemes %}
-                        <div class="flex items-center">
-                            <i class="fas fa-file-alt mr-2"></i>
-                            <span>{{ theme.cat_title }}</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-xs"></i>
-                        {% endfor %}
-                    </div>
-                    <ul class="dropdown ml-4 hidden">
-                        {% for sub in subThemes %}
-                        <li class="option-with-dropdown-inner">
-                            <a href="?route=select&type=call">
-                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                    <div class="flex items-center">
-                                        <span class="ps-4">{{ sub.subcat_name }}</span>
-                                    </div>
-                                    <i class="fas fa-chevron-down text-xs"></i>
-                                </div>
-                            </a>
-                        </li>
-                        {% endfor %}
-                        {#
-                        <li class="option-with-dropdown-inner">
-                            <a href="?route=select&type=func">
-                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                    <div class="flex items-center">
-                                        <span>Functions</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        #}
-                    </ul>
-                </li>
-                {#
-                <li class="option-with-dropdown">
-                    <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                        <div class="flex items-center">
-                            <i class="fas fa-file-alt mr-2"></i>
-                            <span>Javascript</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-xs"></i>
-                    </div>
-                    <ul class="dropdown ml-4 hidden">
-                        <li class="option-with-dropdown-inner">
-                            <a href="?route=select&type=java">
-                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                    <div class="flex items-center">
-                                        <span>Main</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="option-with-dropdown-inner">
-                            <a href="?route=select&type=xtra">
-                                <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                                    <div class="flex items-center">
-                                        <span>Xtra</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=html">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+
+                {% for theme in mainThemes %}
+                    <li class="option-with-dropdown">
+
+                        <!-- Theme Header -->
+                        <div class="dropdown-toggle flex items-center justify-between p-2 hover:bg-gray-700 cursor-pointer">
                             <div class="flex items-center">
                                 <i class="fas fa-file-alt mr-2"></i>
-                                <span>HTML</span>
+                                <span>{{ theme.cat_title }}</span>
                             </div>
+
+                            <i class="fas fa-chevron-down text-xs"></i>
                         </div>
-                    </a>
-                </li>
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=unix">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>Linux</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=reac">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>React</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=node">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>Node</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=bash">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>Bash Scripts</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- ALWAYS LEAVE OTHER FIELD HERE -->
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=else">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>Other</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <!-- ALWAYS LEAVE EXES FIELD HERE -->
-                <li class="option-with-dropdown">
-                    <a href="?route=select&type=exes">
-                        <div class="flex items-center justify-between p-2 hover:bg-gray-700">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt mr-2"></i>
-                                <span>Executables</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                #}
+
+                        <!-- SubThemes -->
+                        <ul class="dropdown ml-4 hidden">
+
+                            {% for sub in subThemes %}
+                                {% if sub.subcat_parent == theme.cat_id %}
+
+                                    <li class="option-with-dropdown-inner">
+
+                                        <!-- SubTheme Header -->
+                                        <div class="dropdown-toggle-inner flex items-center justify-between p-2 hover:bg-gray-700 cursor-pointer">
+                                        <span class="ps-4">
+                                            {{ sub.subcat_name }}
+                                        </span>
+
+                                            <i class="fas fa-chevron-down text-xs"></i>
+                                        </div>
+
+                                        <!-- Pages -->
+                                        <ul class="dropdown-inner ml-4 hidden">
+
+                                            {# Example pages loop #}
+                                            {% for page in pages %}
+                                                {% if page.page_subcat == sub.subcat_id %}
+                                                    <li>
+                                                        <a href="?route=page&id={{ page.page_id }}"
+                                                           class="block p-2 hover:bg-gray-700">
+                                                            {{ page.page_title }}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </ul>
+
+                                    </li>
+
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+
+                    </li>
+                {% endfor %}
+
             </ul>
         </nav>
     </aside>

@@ -1,23 +1,17 @@
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
 
-// For handling of the dropdown menus in the sideBar
-document.addEventListener("DOMContentLoaded", function () {
-    const optionsWithDropdown = document.querySelectorAll(".option-with-dropdown");
-    optionsWithDropdown.forEach(function (option) {
-        option.addEventListener("click", function () {
-            const dropdown = option.querySelector(".dropdown");
-            dropdown.classList.toggle("hidden");
-        });
+        const dropdown = toggle.nextElementSibling;
+
+        dropdown.classList.toggle('hidden');
     });
+});
 
+document.querySelectorAll('.dropdown-toggle-inner').forEach(toggle => {
+    toggle.addEventListener('click', () => {
 
-    const optionsWithDropdownInner = document.querySelectorAll(".option-with-dropdown-inner");
-    optionsWithDropdownInner.forEach(function (option) {
-        option.addEventListener("click", function (event) {
-            event.stopPropagation();
+        const dropdown = toggle.nextElementSibling;
 
-            const dropdownInner = option.querySelector(".dropdown-inner");
-            dropdownInner.classList.toggle("hidden");
-        });
+        dropdown.classList.toggle('hidden');
     });
-
-}); // end doc Ready
+});
