@@ -14,7 +14,10 @@
     <div class="flex">
         {% block sideBar %}{% endblock %}
         <main class={% block mainClass %}{% endblock %}>
-            {% block content %}{% endblock %}
+            {% block content %}
+            {% block dumpArea %}
+                {% endblock %}
+            {% endblock %}
             {% block footer %}
             {% endblock %}
         </main>

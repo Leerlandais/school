@@ -63,11 +63,13 @@
             <ul class="space-y-2">
                 <li class="option-with-dropdown">
                     <div class="flex items-center justify-between p-2 hover:bg-gray-700">
+                        {% for theme in mainThemes %}
                         <div class="flex items-center">
                             <i class="fas fa-file-alt mr-2"></i>
-                            <span>PHP</span>
+                            <span>{{ theme.cat_title }}</span>
                         </div>
                         <i class="fas fa-chevron-down text-xs"></i>
+                        {% endfor %}
                     </div>
                     <ul class="dropdown ml-4 hidden">
                         <li class="option-with-dropdown-inner">

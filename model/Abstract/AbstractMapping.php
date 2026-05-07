@@ -12,6 +12,14 @@ abstract class AbstractMapping
             if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
+            $tab = explode("_", $key);
+            $majuscule = array_map('ucfirst',$tab);
+            $newNameCamelCase = implode($majuscule);
+            $methodeName = "set" . $newNameCamelCase;
+            if (method_exists($this, $methodeName)) {
+                $this->$methodeName($value);
+            }
         }
+
     }
 }
