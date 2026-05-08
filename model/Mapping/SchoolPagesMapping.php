@@ -6,36 +6,23 @@ use model\Abstract\AbstractMapping;
 
 class SchoolPagesMapping extends AbstractMapping
 {
-    protected int $page_id {
-        get => $page_id;
-        set => $page_id = $value;
-    }
+    private int $page_id;
 
-    protected int $page_category {
-        get => $page_category;
-        set => $page_category = $value;
-    }
+    private int $page_category;
 
-    protected string $page_title {
-        get => $page_title;
-        set => $page_title = $value;
-    }
-    protected string $page_slug {
-        get => $page_slug;
-        set => $page_slug = $value;
-    }
+    private string $page_title;
+    private string $page_slug;
+    private string $page_created;
+    private string $page_updated;
 
-    protected string $page_created {
-        get => $page_created;
-        set => $page_created = $value;
-    }
-    protected string $page_updated {
-        get => $page_updated;
-        set => $page_updated = $value;
-    }
     public function getPageId(): int
     {
         return $this->page_id;
+    }
+
+    public function setPageId(int $page_id): void
+    {
+        $this->page_id = $page_id;
     }
 
     public function getPageCategory(): int
@@ -43,29 +30,50 @@ class SchoolPagesMapping extends AbstractMapping
         return $this->page_category;
     }
 
+    public function setPageCategory(int $page_category): void
+    {
+        $this->page_category = $page_category;
+    }
+
+    public function getPageTitle(): string
+    {
+        return $this->page_title;
+    }
+
+    public function setPageTitle(string $page_title): void
+    {
+        $this->page_title = $page_title;
+    }
+
     public function getPageSlug(): string
     {
         return $this->page_slug;
     }
 
-    public function getPageTagPosition(): int
+    public function setPageSlug(string $page_slug): void
     {
-        return $this->page_tag_position;
+        $this->page_slug = $page_slug;
     }
 
-    public function getPageTagName(): string
+    public function getPageCreated(): string
     {
-        return $this->page_tag_name;
+        return $this->page_created;
     }
 
-    public function getPageTagClass(): ?string
+    public function setPageCreated(string $page_created): void
     {
-        return $this->page_tag_class;
+        $this->page_created = $page_created;
     }
 
-    public function getPageTagContent(): ?string
+    public function getPageUpdated(): string
     {
-        return $this->page_tag_content;
+        return $this->page_updated;
     }
+
+    public function setPageUpdated(string $page_updated): void
+    {
+        $this->page_updated = $page_updated;
+    }
+
 
 }
