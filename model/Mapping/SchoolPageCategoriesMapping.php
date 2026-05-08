@@ -6,22 +6,39 @@ use model\Abstract\AbstractMapping;
 
 class SchoolPageCategoriesMapping extends AbstractMapping
 {
-    public int $cat_id {
-        get => $this->_cat_id;
-        set => $this->_cat_id = $value;
+    private int $cat_id;
+    private string $cat_title;
+    private bool $cat_active;
+
+    public function getCatId(): int
+    {
+        return $this->cat_id;
     }
 
-    public string $cat_title {
-        get => $this->_cat_title;
-        set => $this->_cat_title = $value;
+    public function setCatId(int $cat_id): void
+    {
+        $this->cat_id = $cat_id;
     }
 
-    public bool $cat_active {
-        get => $this->_cat_active;
-        set => $this->_cat_active = $value;
+    public function getCatTitle(): string
+    {
+        return $this->cat_title;
     }
 
-    private int $_cat_id;
-    private string $_cat_title;
-    private bool $_cat_active;
+    public function setCatTitle(string $cat_title): void
+    {
+        $this->cat_title = $cat_title;
+    }
+
+    public function isCatActive(): bool
+    {
+        return $this->cat_active;
+    }
+
+    public function setCatActive(bool $cat_active): void
+    {
+        $this->cat_active = $cat_active;
+    }
+
+
 }
