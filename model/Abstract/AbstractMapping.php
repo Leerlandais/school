@@ -9,9 +9,6 @@ abstract class AbstractMapping
     protected function hydrate(array $assoc): void
     {
         foreach ($assoc as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
-            }
             $tab = explode("_", $key);
             $majuscule = array_map('ucfirst',$tab);
             $newNameCamelCase = implode($majuscule);
@@ -20,6 +17,5 @@ abstract class AbstractMapping
                 $this->$methodeName($value);
             }
         }
-
     }
 }
