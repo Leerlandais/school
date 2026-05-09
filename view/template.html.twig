@@ -69,7 +69,7 @@
                         <div class="dropdown-toggle flex items-center justify-between p-2 hover:bg-gray-700 cursor-pointer">
                             <div class="flex items-center">
                                 <i class="fas fa-file-alt mr-2"></i>
-                                <span>{{ theme.cat_title }}</span>
+                                <span>{{ theme.getCatTitle }}</span>
                             </div>
 
                             <i class="fas fa-chevron-down text-xs"></i>
@@ -79,14 +79,14 @@
                         <ul class="dropdown ml-4 hidden">
 
                             {% for sub in subThemes %}
-                                {% if sub.subcat_parent == theme.cat_id %}
+                                {% if sub.getSubcatParent == theme.getCatId %}
 
                                     <li class="option-with-dropdown-inner">
 
                                         <!-- SubTheme Header -->
                                         <div class="dropdown-toggle-inner flex items-center justify-between p-2 hover:bg-gray-700 cursor-pointer">
                                         <span class="ps-4">
-                                            {{ sub.subcat_name }}
+                                            {{ sub.getSubcatName }}
                                         </span>
 
                                             <i class="fas fa-chevron-down text-xs"></i>
@@ -97,11 +97,11 @@
 
                                             {# Example pages loop #}
                                             {% for page in pages %}
-                                                {% if page.page_subcat == sub.subcat_id %}
+                                                {% if page.getPageSubcat == sub.getSubcatId %}
                                                     <li>
-                                                        <a href="?route=page&id={{ page.page_id }}"
+                                                        <a href="?route=page&id={{ page.getPageId }}"
                                                            class="block p-2 hover:bg-gray-700">
-                                                            {{ page.page_title }}
+                                                            {{ page.getPageTitle }}
                                                         </a>
                                                     </li>
                                                 {% endif %}
