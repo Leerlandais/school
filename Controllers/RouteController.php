@@ -16,7 +16,7 @@ $router->registerRoute('404', ErrorController::class, 'error404');
 $router->registerRoute("admin", AdminController::class, "adminControls");
 $router->registerRoute("addMainTheme", MainThemeController::class, "addMainTheme");
 $router->registerRoute("addSubTheme", SubThemeController::class, "addSubTheme");
-$router->registerRoute("addPage");
+$router->registerRoute("addPage", PageController::class, "addPage");
 
 
 

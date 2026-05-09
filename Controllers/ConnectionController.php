@@ -40,6 +40,7 @@ class ConnectionController extends Abstract\AbstractController
         $balise = [
             "type" => "h1",
             "class" => "head-1-center", // this is a self-defined TW class (variants include head-1-left, head-2-... etc)
+            "text" => "This is a test"
         ];
         $mainThemes = $this->mainThemeManager->getThemes();
         $subThemes = $this->subThemeManager->getSubThemes();
