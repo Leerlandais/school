@@ -22,18 +22,25 @@ class SubThemeController extends Abstract\AbstractController
     {
         global $sessionRole, $systemMessage;
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
-        $mainThemes = $this->mainThemeManager->getThemes();
 
         if(isset($_POST["unset:addSubTheme"])) {
-           // $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
+            $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
             $cleanedData = $this->preparePostData($_POST);
             $insertTheme = $this->subThemeManager->addSubTheme($cleanedData);
+            $_SESSION["systemMessage"] = $insertTheme ? "Subtheme added" : "An error occurred";
+            header("Location: ?route=admin");
+            exit();
         }
+
+
+        $mainThemes = $this->mainThemeManager->getThemes();
+        $subThemes = $this->subThemeManager->getSubThemes();
         echo $this->twig->render('private/theme.addSub.html.twig', [
             "sessionRole" => $sessionRole,
             "systemMessage" => $systemMessage,
             "csrfToken" => $this->csrfToken,
             "mainThemes" => $mainThemes,
+            "subThemes" => $subThemes
         ]);
     }
 }

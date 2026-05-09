@@ -33,7 +33,7 @@
                         <select class="select-standard" name="int:subcat_parent" id="themeParent" required>
                             <option value=""></option>
                             {% for theme in mainThemes %}
-                                <option value="{{ theme.cat_id }}">{{ theme.cat_title }}</option>
+                                <option value="{{ theme.getCatId }}">{{ theme.getCatTitle }}</option>
                             {% endfor %}
                         </select>
                     </div>
