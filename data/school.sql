@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 08, 2026 at 04:56 PM
+-- Generation Time: May 10, 2026 at 05:26 PM
 -- Server version: 8.4.7
 -- PHP Version: 8.4.15
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `school`
 --
-CREATE DATABASE IF NOT EXISTS `school` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `school`;
 
 -- --------------------------------------------------------
 
@@ -32,13 +30,22 @@ USE `school`;
 DROP TABLE IF EXISTS `school_pages`;
 CREATE TABLE IF NOT EXISTS `school_pages` (
   `page_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `page_category` smallint UNSIGNED NOT NULL,
-  `page_title` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
+  `page_parent` smallint UNSIGNED NOT NULL,
+  `page_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `page_slug` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
   `page_created` datetime NOT NULL,
   `page_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `school_pages`
+--
+
+INSERT INTO `school_pages` (`page_id`, `page_parent`, `page_name`, `page_slug`, `page_created`, `page_updated`) VALUES
+(1, 2, 'sdfsdf', '', '2026-05-10 06:08:14', '2026-05-10 08:08:14'),
+(2, 2, 'sdqsdqd', '', '2026-05-10 06:09:58', '2026-05-10 08:09:58'),
+(3, 2, 'sdfdsfs', '', '2026-05-10 06:10:25', '2026-05-10 08:10:25');
 
 -- --------------------------------------------------------
 
@@ -75,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `school_page_subcats` (
   `subcat_name` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
   `subcat_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`subcat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `school_page_subcats`
@@ -83,7 +90,8 @@ CREATE TABLE IF NOT EXISTS `school_page_subcats` (
 
 INSERT INTO `school_page_subcats` (`subcat_id`, `subcat_parent`, `subcat_name`, `subcat_active`) VALUES
 (1, 1, 'Past', 1),
-(2, 3, 'A Sub Test', 1);
+(2, 3, 'A Sub Test', 1),
+(6, 1, 'Present', 1);
 
 -- --------------------------------------------------------
 
