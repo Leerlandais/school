@@ -29,7 +29,19 @@ class PageController extends Abstract\AbstractController
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
 
         if(isset($_POST["unset:addNewPage"])) {
-            die(var_dump($_POST));
+            // $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
+            $cleanedData = $this->preparePostData($_POST);
+            $insertPage = $this->pageManager->addNewPage($cleanedData);
+            if($insertPage) {
+                $_SESSION["systemMessage"] = "Page added";
+                header("Location: ?route=buildPage&pageId=$insertPage");
+                exit();
+            }else {
+                $_SESSION["systemMessage"] = "An error occurred";
+                header("Location: ?route=admin");
+                exit();
+            }
+
         }
 
         $mainThemes = $this->mainThemeManager->getThemes();
