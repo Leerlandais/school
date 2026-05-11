@@ -3,6 +3,7 @@
 namespace model\Manager;
 
 use model\Abstract\AbstractManager;
+use model\Mapping\SchoolPagesMapping;
 
 class PageManager extends AbstractManager
 {
@@ -11,6 +12,17 @@ class PageManager extends AbstractManager
         if($this->checkIfPageExists($data["page_name"])) return null;
         $data["page_created"] = date("Y-m-d H:i:s");
         return $this->insertAnything($data, "school_pages", "db", true);
+    }
+
+    public function selectAllPages() : ?array
+    {
+        $query = $this->db->query("SELECT * FROM `school_pages` ORDER BY `page_created` DESC");
+        $pages = [];
+        while($row = $query->fetch()) {
+            $pages[] = new SchoolPagesMapping($row);
+        }
+        if(empty($pages)) return null;
+        return $pages;
     }
 
     private function checkIfPageExists(string $pageName) : bool

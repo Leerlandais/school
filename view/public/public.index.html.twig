@@ -2,6 +2,6 @@
 
 {% block title %}{{ parent() }} | Welcome{% endblock %}
 {% block content %}
-    <{{ tag["type"] }} class="{{ tag["class"] }}"> {{ tag["text"] }}</{{ tag["type"] }}>
+{{ dump(pages) }}
 {% endblock %}
         

@@ -6,6 +6,7 @@ namespace Controllers;
 use Factory\ManagerFactory;
 use model\Manager\ConnectionManager;
 use model\Manager\MainThemeManager;
+use model\Manager\PageManager;
 use model\Manager\SubThemeManager;
 use Twig\Environment;
 
@@ -15,6 +16,7 @@ class ConnectionController extends Abstract\AbstractController
     private ConnectionManager $connectionManager;
     private MainThemeManager $mainThemeManager;
     private SubThemeManager $subThemeManager;
+    private PageManager $pageManager;
 
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
     {
@@ -26,6 +28,7 @@ class ConnectionController extends Abstract\AbstractController
         $this->connectionManager = $this->getManager(ConnectionManager::class);
         $this->mainThemeManager = $this->getManager(MainThemeManager::class);
         $this->subThemeManager = $this->getManager(SubThemeManager::class);
+        $this->pageManager = $this->getManager(PageManager::class);
     }
     public function logout()
     {
@@ -44,10 +47,11 @@ class ConnectionController extends Abstract\AbstractController
         ];
         $mainThemes = $this->mainThemeManager->getThemes();
         $subThemes = $this->subThemeManager->getSubThemes();
+        $pages = $this->pageManager->selectAllPages();
         echo $this->twig->render('public/public.index.html.twig', [
             'systemMessage' => $systemMessage,
             'sessionRole' => $sessionRole,
-            'tag' => $balise,
+            'pages' => $pages,
             "mainThemes" => $mainThemes,
             "subThemes" => $subThemes,
         ]);

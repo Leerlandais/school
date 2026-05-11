@@ -8,9 +8,9 @@ class SchoolPagesMapping extends AbstractMapping
 {
     private int $page_id;
 
-    private int $page_category;
+    private int $page_parent;
 
-    private string $page_title;
+    private string $page_name;
     private string $page_slug;
     private string $page_created;
     private string $page_updated;
@@ -25,24 +25,24 @@ class SchoolPagesMapping extends AbstractMapping
         $this->page_id = $page_id;
     }
 
-    public function getPageCategory(): int
+    public function getPageParent(): int
     {
-        return $this->page_category;
+        return $this->page_parent;
     }
 
-    public function setPageCategory(int $page_category): void
+    public function setPageParent(int $page_parent): void
     {
-        $this->page_category = $page_category;
+        $this->page_parent = $page_parent;
     }
 
-    public function getPageTitle(): string
+    public function getPageName(): string
     {
-        return $this->page_title;
+        return $this->page_name;
     }
 
-    public function setPageTitle(string $page_title): void
+    public function setPageName(string $page_name): void
     {
-        $this->page_title = $page_title;
+        $this->page_name = $page_name;
     }
 
     public function getPageSlug(): string
@@ -74,6 +74,7 @@ class SchoolPagesMapping extends AbstractMapping
     {
         $this->page_updated = $page_updated;
     }
+
 
 
 }
