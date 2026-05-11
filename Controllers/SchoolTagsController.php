@@ -36,7 +36,10 @@ class SchoolTagsController extends Abstract\AbstractController
         $mainThemes = $this->mainThemeManager->getThemes();
 
         if(isset($_POST["unset:addNewTag"])) {
-            die(var_dump($_POST));
+            $cleanedData = $this->preparePostData($_POST);
+            $addTag = $this->schoolTagsManager->addNewTag($cleanedData);
+            $_SESSION["systemMessage"] = $addTag ? "Tag added" : "An error occurred";
+            header("Location: ?route=admin");
         }
         echo $this->twig->render("private/tag.add.html.twig", [
             "systemMessage" => $systemMessage,

@@ -92,6 +92,8 @@ abstract class AbstractController
                 return $this->simpleTrim($cleanThis["value"]);
             case "date":
                 return $this->dateClean($cleanThis["value"]);
+                case "check":
+                    return $cleanThis["value"] == "on";
         }
 
         return $cleanThis["value"];

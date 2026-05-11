@@ -8,7 +8,7 @@ class SchoolTagsMapping extends AbstractMapping
 {
     private int $tag_id;
     private string $tag_name;
-    private bool $tag_has_close;
+    private bool $tag_no_close;
 
     public function getTagId(): int
     {
@@ -30,15 +30,16 @@ class SchoolTagsMapping extends AbstractMapping
         $this->tag_name = $tag_name;
     }
 
-    public function isTagHasClose(): bool
+    public function isTagNoClose(): bool
     {
-        return $this->tag_has_close;
+        return $this->tag_no_close;
     }
 
-    public function setTagHasClose(bool $tag_has_close): void
+    public function setTagNoClose(bool $tag_no_close): void
     {
-        $this->tag_has_close = $tag_has_close;
+        $this->tag_no_close = $tag_no_close;
     }
+
 
 
 }

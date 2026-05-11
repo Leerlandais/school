@@ -29,7 +29,7 @@ class PageController extends Abstract\AbstractController
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
 
         if(isset($_POST["unset:addNewPage"])) {
-            // $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
+            $this->verifyCsrfToken($_POST["csrf:csrf_token"]);
             $cleanedData = $this->preparePostData($_POST);
             $insertPage = $this->pageManager->addNewPage($cleanedData);
             if($insertPage) {
