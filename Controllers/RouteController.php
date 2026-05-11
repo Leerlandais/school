@@ -17,7 +17,7 @@ $router->registerRoute("admin", AdminController::class, "adminControls");
 $router->registerRoute("addMainTheme", MainThemeController::class, "addMainTheme");
 $router->registerRoute("addSubTheme", SubThemeController::class, "addSubTheme");
 $router->registerRoute("addPage", PageController::class, "addPage");
-
+$router->registerRoute("addNewTag", SchoolTagsController::class, "addNewTag");
 
 
 

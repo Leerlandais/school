@@ -20,3 +20,8 @@
     rounded-md my-2 bg-white dark:bg-gray-700
     text-gray-900 dark:text-white
 }
+
+.admin-button-standard {
+    @apply h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300
+    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100;
+}
