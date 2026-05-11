@@ -3,6 +3,7 @@
 namespace model\Manager;
 
 use model\Abstract\AbstractManager;
+use model\Mapping\SchoolBlocksMapping;
 use model\Mapping\SchoolPagesMapping;
 
 class PageManager extends AbstractManager
@@ -33,6 +34,16 @@ class PageManager extends AbstractManager
         $stmt->execute();
         $page = $stmt->fetch();
         if($page) return new SchoolPagesMapping($page);
+        return null;
+    }
+
+    public function getPageCurrent(int $pageId) : ?SchoolBlocksMapping
+    {
+        $stmt = $this->db->prepare("SELECT * FROM school_blocks WHERE block_page_id = :pageId");
+        $stmt->bindParam(":pageId", $pageId);
+        $stmt->execute();
+        $page = $stmt->fetch();
+        if($page) return new SchoolBlocksMapping($page);
         return null;
     }
 

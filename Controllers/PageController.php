@@ -61,12 +61,13 @@ class PageController extends Abstract\AbstractController
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
         $pageId = $this->intClean($getParams["pageId"]);
         $pageDetails = $this->pageManager->getPageDetails($pageId);
-
+        $pageCurrent = $this->pageManager->getPageCurrent($pageId);
         echo $this->twig->render("private/page.build.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "csrfToken" => $this->csrfToken,
             "pageDetails" => $pageDetails,
+            "pageCurrent" => $pageCurrent,
         ]);
     }
 }
