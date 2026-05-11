@@ -26,6 +26,16 @@ class PageManager extends AbstractManager
         return $pages;
     }
 
+    public function getPageDetails(int $pageId) : ?SchoolPagesMapping
+    {
+        $stmt = $this->db->prepare("SELECT * FROM school_pages WHERE page_id = :pageId");
+        $stmt->bindParam(":pageId", $pageId);
+        $stmt->execute();
+        $page = $stmt->fetch();
+        if($page) return new SchoolPagesMapping($page);
+        return null;
+    }
+
     private function checkIfPageExists(string $pageName) : bool
     {
         $stmt = $this->db->prepare("SELECT * FROM school_pages WHERE page_name = :pageName");

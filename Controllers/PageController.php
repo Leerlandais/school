@@ -54,4 +54,19 @@ class PageController extends Abstract\AbstractController
             "mainThemes" => $mainThemes,
         ]);
     }
+
+    public function buildPage(array $getParams) : void
+    {
+        global $sessionRole, $systemMessage;
+        $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+        $pageId = $this->intClean($getParams["pageId"]);
+        $pageDetails = $this->pageManager->getPageDetails($pageId);
+
+        echo $this->twig->render("private/page.build.html.twig", [
+            "systemMessage" => $systemMessage,
+            "sessionRole" => $sessionRole,
+            "csrfToken" => $this->csrfToken,
+            "pageDetails" => $pageDetails,
+        ]);
+    }
 }
