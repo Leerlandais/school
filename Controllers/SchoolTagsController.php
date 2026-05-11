@@ -35,13 +35,17 @@ class SchoolTagsController extends Abstract\AbstractController
         $subThemes = $this->subThemeManager->getSubThemes();
         $mainThemes = $this->mainThemeManager->getThemes();
 
+        if(isset($_POST["unset:addNewTag"])) {
+            die(var_dump($_POST));
+        }
         echo $this->twig->render("private/tag.add.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "tags" => $tags,
             "pages" => $pages,
             "subThemes" => $subThemes,
-            "mainThemes" => $mainThemes
+            "mainThemes" => $mainThemes,
+            "csrfToken" => $this->csrfToken,
         ]);
     }
 }

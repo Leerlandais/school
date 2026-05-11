@@ -9,6 +9,7 @@ class PageManager extends AbstractManager
 {
     public function addNewPage(array $data) : ?int
     {
+
         if($this->checkIfPageExists($data["page_name"])) return null;
         $data["page_created"] = date("Y-m-d H:i:s");
         return $this->insertAnything($data, "school_pages", "db", true);
