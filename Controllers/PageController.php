@@ -61,13 +61,34 @@ class PageController extends Abstract\AbstractController
         $this->checkPermissions("ROLE_ADMIN", $sessionRole);
         $pageId = $this->intClean($getParams["pageId"]);
         $pageDetails = $this->pageManager->getPageDetails($pageId);
-        $pageCurrent = $this->pageManager->getPageCurrent($pageId);
+        $pageBlocks = $this->pageManager->getPageBlocks($pageId);
         echo $this->twig->render("private/page.build.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "csrfToken" => $this->csrfToken,
             "pageDetails" => $pageDetails,
-            "pageCurrent" => $pageCurrent,
+            "pageBlocks" => $pageBlocks,
+        ]);
+    }
+
+    public function viewPage(array $getParams) : void
+    {
+        global $sessionRole, $systemMessage;
+        $pageId = $this->intClean($getParams["id"]);
+        $pageDetails = $this->pageManager->getPageDetails($pageId);
+        $pageBlocks = $this->pageManager->getPageBlocks($pageId);
+        $mainThemes = $this->mainThemeManager->getThemes();
+        $subThemes = $this->subThemeManager->getSubThemes();
+        $pages = $this->pageManager->selectAllPages();
+
+        echo $this->twig->render("public/page.view.html.twig", [
+            "systemMessage" => $systemMessage,
+            "sessionRole" => $sessionRole,
+            "pageDetails" => $pageDetails,
+            "pageBlocks" => $pageBlocks,
+            "pages" => $pages,
+            "mainThemes" => $mainThemes,
+            "subThemes" => $subThemes,
         ]);
     }
 }

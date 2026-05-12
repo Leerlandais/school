@@ -10,7 +10,7 @@ $notesForTomorrow = [
     5 => "Add a link to delete the page",
     6 => "Add a method to insert a new line on the page",
 ];
-die(var_dump($notesForTomorrow));
+// die(var_dump($notesForTomorrow));
 $router = new RouteManager($twig, $db);
 
 // Register routes
@@ -19,6 +19,7 @@ $router->registerRoute('home', ConnectionController::class, 'index');
 $router->registerRoute("logout", ConnectionController::class, "logout");
 $router->registerRoute("login", ConnectionController::class, "login");
 $router->registerRoute('404', ErrorController::class, 'error404');
+$router->registerRoute("viewPage", PageController::class, "viewPage");
 
 // PRIVATE ROUTES
 $router->registerRoute("admin", AdminController::class, "adminControls");

@@ -2,7 +2,7 @@
 {% block title %}{{ parent() }} | Build{% endblock %}
 {% block sideBar %}{% endblock %}
 {% block content %}
-    {{ dump(pageCurrent) }}
+    {{ dump(pageBlocks) }}
     {% if pageDetails is null %}
         <div class="mt-24">
             <h1 class="head-1-center">This page doesn't exist yet&excl;</h1>

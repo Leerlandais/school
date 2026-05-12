@@ -99,7 +99,7 @@
                                             {% for page in pages %}
                                                 {% if page.getPageParent == sub.getSubcatId %}
                                                     <li>
-                                                        <a href="?route=page&id={{ page.getPageId }}"
+                                                        <a href="?route=viewPage&id={{ page.getPageId }}"
                                                            class="block p-2 ps-8 hover:bg-gray-700">
                                                             {{ page.getPageName }}
                                                         </a>

@@ -37,9 +37,12 @@ class PageManager extends AbstractManager
         return null;
     }
 
-    public function getPageCurrent(int $pageId) : ?SchoolBlocksMapping
+    public function getPageBlocks(int $pageId) : ?SchoolBlocksMapping
     {
-        $stmt = $this->db->prepare("SELECT * FROM school_blocks WHERE block_page_id = :pageId");
+        $stmt = $this->db->prepare("SELECT sb.*, st.tag_name, st.tag_no_close 
+                                            FROM school_blocks sb
+                                            LEFT JOIN school_tags st ON sb.block_html_tag = st.tag_id
+                                            WHERE block_page_id = :pageId");
         $stmt->bindParam(":pageId", $pageId);
         $stmt->execute();
         $page = $stmt->fetch();

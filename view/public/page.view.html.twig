@@ -1,0 +1,12 @@
+{% extends "template.html.twig" %}
+
+{% block title %}{{ parent() }} | View{% endblock %}
+{% block content %}
+    {{ dump(pageBlocks) }}
+    {% for block in pageBlocks %}
+        <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
+    {% endfor %}
+{% endblock %}
+{% block footer %}
+    <p class="mx-auto text-center font-bold"><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}" class="italic">Edit</a> this page</p>
+{% endblock %}
