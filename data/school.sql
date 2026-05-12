@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2026 at 05:26 PM
+-- Generation Time: May 12, 2026 at 05:31 AM
 -- Server version: 8.4.7
 -- PHP Version: 8.4.15
 
@@ -24,6 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `school_blocks`
+--
+
+DROP TABLE IF EXISTS `school_blocks`;
+CREATE TABLE IF NOT EXISTS `school_blocks` (
+  `block_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `block_page_id` smallint UNSIGNED NOT NULL,
+  `block_html_tag` tinyint UNSIGNED NOT NULL,
+  `block_class` varchar(1024) COLLATE utf8mb4_general_ci NOT NULL,
+  `block_content` varchar(4096) COLLATE utf8mb4_general_ci NOT NULL,
+  `block_position` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`block_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `school_pages`
 --
 
@@ -36,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `school_pages` (
   `page_created` datetime NOT NULL,
   `page_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `school_pages`
@@ -45,7 +62,9 @@ CREATE TABLE IF NOT EXISTS `school_pages` (
 INSERT INTO `school_pages` (`page_id`, `page_parent`, `page_name`, `page_slug`, `page_created`, `page_updated`) VALUES
 (1, 2, 'sdfsdf', '', '2026-05-10 06:08:14', '2026-05-10 08:08:14'),
 (2, 2, 'sdqsdqd', '', '2026-05-10 06:09:58', '2026-05-10 08:09:58'),
-(3, 2, 'sdfdsfs', '', '2026-05-10 06:10:25', '2026-05-10 08:10:25');
+(3, 2, 'sdfdsfs', '', '2026-05-10 06:10:25', '2026-05-10 08:10:25'),
+(4, 2, 'Yet Another Test', 'yet-another-test', '2026-05-11 13:30:13', '2026-05-11 15:30:13'),
+(5, 2, 'More Testing', 'more-testing', '2026-05-11 15:41:56', '2026-05-11 17:41:56');
 
 -- --------------------------------------------------------
 
@@ -92,6 +111,35 @@ INSERT INTO `school_page_subcats` (`subcat_id`, `subcat_parent`, `subcat_name`, 
 (1, 1, 'Past', 1),
 (2, 3, 'A Sub Test', 1),
 (6, 1, 'Present', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `school_tags`
+--
+
+DROP TABLE IF EXISTS `school_tags`;
+CREATE TABLE IF NOT EXISTS `school_tags` (
+  `tag_id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tag_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tag_no_close` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `school_tags`
+--
+
+INSERT INTO `school_tags` (`tag_id`, `tag_name`, `tag_no_close`) VALUES
+(1, 'h1', 0),
+(2, 'img', 1),
+(3, 'h2', 0),
+(4, 'p', 0),
+(5, 'h3', 0),
+(6, 'h4', 0),
+(7, 'h5', 0),
+(8, 'h6', 0),
+(9, 'span', 0);
 
 -- --------------------------------------------------------
 
