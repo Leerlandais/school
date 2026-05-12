@@ -2,11 +2,13 @@
 
 {% block title %}{{ parent() }} | View{% endblock %}
 {% block content %}
-    {{ dump(pageBlocks) }}
     {% for block in pageBlocks %}
         <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
+        {% if block.isTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
     {% endfor %}
 {% endblock %}
 {% block footer %}
+    {% if "ROLE_ADMIN" in sessionRole %}
     <p class="mx-auto text-center font-bold"><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}" class="italic">Edit</a> this page</p>
+    {% endif %}
 {% endblock %}

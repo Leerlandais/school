@@ -6,6 +6,7 @@ use Controllers\Abstract\AbstractController;
 use Factory\ManagerFactory;
 use model\Manager\MainThemeManager;
 use model\Manager\PageManager;
+use model\Manager\SchoolTagsManager;
 use model\Manager\SubThemeManager;
 use Twig\Environment;
 
@@ -14,6 +15,7 @@ class PageController extends Abstract\AbstractController
     private PageManager $pageManager;
     private SubThemeManager $subThemeManager;
     private MainThemeManager $mainThemeManager;
+    private SchoolTagsManager $schoolTagsManager;
 
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
     {
@@ -21,6 +23,7 @@ class PageController extends Abstract\AbstractController
         $this->pageManager = $this->getManager(PageManager::class);
         $this->subThemeManager = $this->getManager(SubThemeManager::class);
         $this->mainThemeManager = $this->getManager(MainThemeManager::class);
+        $this->schoolTagsManager = $this->getManager(SchoolTagsManager::class);
     }
 
     public function addPage() : void
@@ -46,12 +49,14 @@ class PageController extends Abstract\AbstractController
 
         $mainThemes = $this->mainThemeManager->getThemes();
         $subThemes = $this->subThemeManager->getSubThemes();
+        $pages = $this->pageManager->selectAllPages();
         echo $this->twig->render("private/page.add.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "csrfToken" => $this->csrfToken,
             "subThemes" => $subThemes,
             "mainThemes" => $mainThemes,
+            "pages" => $pages,
         ]);
     }
 
@@ -62,12 +67,23 @@ class PageController extends Abstract\AbstractController
         $pageId = $this->intClean($getParams["pageId"]);
         $pageDetails = $this->pageManager->getPageDetails($pageId);
         $pageBlocks = $this->pageManager->getPageBlocks($pageId);
+        $tags = $this->schoolTagsManager->getAllTags();
+
+        if(isset($_POST["unset:addNewBlock"])) {
+            $cleanedData = $this->preparePostData($_POST);
+            $addNewBlock = $this->pageManager->addNewBlock($cleanedData);
+            if(!$addNewBlock) {
+                $_SESSION["systemMessage"] = "Problem adding new block";
+            }
+            header("Location: ?route=buildPage&pageId=$pageId");
+        }
         echo $this->twig->render("private/page.build.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "csrfToken" => $this->csrfToken,
             "pageDetails" => $pageDetails,
             "pageBlocks" => $pageBlocks,
+            "tags" => $tags,
         ]);
     }
 

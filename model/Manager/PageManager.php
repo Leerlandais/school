@@ -37,18 +37,27 @@ class PageManager extends AbstractManager
         return null;
     }
 
-    public function getPageBlocks(int $pageId) : ?SchoolBlocksMapping
+    public function getPageBlocks(int $pageId) : ?array
     {
         $stmt = $this->db->prepare("SELECT sb.*, st.tag_name, st.tag_no_close 
                                             FROM school_blocks sb
                                             LEFT JOIN school_tags st ON sb.block_html_tag = st.tag_id
-                                            WHERE block_page_id = :pageId");
+                                            WHERE block_page_id = :pageId ORDER BY sb.block_position ASC");
         $stmt->bindParam(":pageId", $pageId);
         $stmt->execute();
-        $page = $stmt->fetch();
-        if($page) return new SchoolBlocksMapping($page);
-        return null;
+        $blocks = [];
+        while($row = $stmt->fetch()) {
+            $blocks[] = new SchoolBlocksMapping($row);
+        }
+        if(empty($blocks)) return null;
+        return $blocks;
     }
+
+    public function addNewBlock(array $data)
+    {
+        return $this->insertAnything($data, "school_blocks");
+    }
+
 
     private function checkIfPageExists(string $pageName) : bool
     {

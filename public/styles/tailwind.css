@@ -7,16 +7,20 @@
     @apply text-center text-4xl font-bold;
 }
 
+.head-2-left {
+    @apply text-left text-2xl font-bold;
+}
+
 .input-standard {
-    @apply block w-full border border-blue-400
+    @apply block border border-blue-400
     outline-blue-800 px-2 py-2 text-sm rounded-md
     my-2 bg-white dark:bg-gray-700 text-gray-900
     dark:text-white;
 }
 
 .select-standard {
-    @apply block w-fit border border-blue-400
-    outline-blue-800 px-4 py-2 mx-auto text-sm
+    @apply w-fit border border-blue-400
+    outline-blue-800 px-4 py-2 text-sm
     rounded-md my-2 bg-white dark:bg-gray-700
     text-gray-900 dark:text-white
 }
@@ -24,4 +28,8 @@
 .admin-button-standard {
     @apply h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300
     hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100;
+}
+
+.p-standard {
+    @apply px-6 py-2 text-sm text-gray-900 leading-tight font-semibold text-left;
 }
