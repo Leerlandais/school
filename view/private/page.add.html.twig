@@ -19,7 +19,7 @@
                         </label>
                         <input type="text"
                                name="str:page_name"
-                               class="input-standard"
+                               class="input-standard w-full"
                                id="pageName"
                                autofocus
                                required>
@@ -31,7 +31,7 @@
                         </label>
                         <input type="text"
                                name="str:page_slug"
-                               class="input-standard"
+                               class="input-standard w-full"
                                id="slugName"
 
                                required>
@@ -41,7 +41,7 @@
                                class="text-sm sm:text-md font-bold text-gray-700 dark:text-gray-300">
                             Parent
                         </label>
-                        <select class="select-standard" name="int:page_parent" id="pageParent" required>
+                        <select class="select-standard w-full" name="int:page_parent" id="pageParent" required>
                             <option value=""></option>
                             {% for theme in subThemes %}
                                 <option value="{{ theme.getSubcatId }}">{{ theme.getSubcatName }}</option>
@@ -50,8 +50,7 @@
                     </div>
 
                     <div class="flex justify-center">
-                        <button class="px-4 py-1 bg-blue-400 rounded-md
-                            text-black text-sm sm:text-lg shadow-md mb-4"
+                        <button class="button-standard"
                                 name="unset:addNewPage"
                                 type="submit">
                             Add

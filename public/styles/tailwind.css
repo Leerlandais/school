@@ -33,3 +33,8 @@
 .p-standard {
     @apply px-6 py-2 text-sm text-gray-900 leading-tight font-semibold text-left;
 }
+
+.button-standard {
+    @apply px-4 py-1 bg-blue-400 rounded-md
+    text-black text-sm sm:text-lg shadow-md mb-4;
+}

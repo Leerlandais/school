@@ -13,8 +13,8 @@ class SchoolBlocksMapping extends AbstractMapping
     private string $block_content;
     private int $block_position;
 
-    private string $tag_name;
-    private bool $tag_no_close;
+    private ?string $tag_name;
+    private ?bool $tag_no_close;
 
     public function getBlockId(): int
     {
@@ -76,25 +76,27 @@ class SchoolBlocksMapping extends AbstractMapping
         $this->block_position = $block_position;
     }
 
-    public function getTagName(): string
+    public function getTagName(): ?string
     {
         return $this->tag_name;
     }
 
-    public function setTagName(string $tag_name): void
+    public function setTagName(?string $tag_name): void
     {
         $this->tag_name = $tag_name;
     }
 
-    public function isTagNoClose(): bool
+    public function getTagNoClose(): ?bool
     {
         return $this->tag_no_close;
     }
 
-    public function setTagNoClose(bool $tag_no_close): void
+    public function setTagNoClose(?bool $tag_no_close): void
     {
         $this->tag_no_close = $tag_no_close;
     }
+
+
 
 
 

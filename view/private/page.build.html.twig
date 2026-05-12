@@ -10,12 +10,12 @@
         </div>
     {% else %}
         <div class="mt-16 mb-6">
-            <h1 class="head-1-center">Building {{ pageDetails.getPageName }}</h1>
+            <h1 class="head-1-center underline">Building {{ pageDetails.getPageName }}</h1>
         </div>
         <form method="post" class="ms-12">
         {% for block in pageBlocks %}
             <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
-            {% if block.isTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
+            {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
             {% if loop.last %}
                 <input type="hidden" name="int:block_position" value="{{ block.getBlockPosition +100 }}">
             {% endif %}
@@ -28,7 +28,7 @@
                 <select name="int:block_html_tag"
                         id="htmlTagName" class="select-standard"
                         required>
-                    <option value=""></option>
+                    <option value="4">p</option>
                     {% for tag in tags %}
                         <option value="{{ tag.getTagId }}">{{ tag.getTagName }}</option>
                     {% endfor %}

@@ -4,11 +4,21 @@
 {% block content %}
     {% for block in pageBlocks %}
         <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
-        {% if block.isTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
+        {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
     {% endfor %}
 {% endblock %}
 {% block footer %}
     {% if "ROLE_ADMIN" in sessionRole %}
     <p class="mx-auto text-center font-bold"><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}" class="italic">Edit</a> this page</p>
+        <form method="post">
+            <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}">
+            <input type="hidden" name="int:page_id" value="{{ pageDetails.getPageId }}">
+            <button type="submit" name="unset:deletePage" id="delButton" class="button-standard">Delete this page</button>
+        </form>
     {% endif %}
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script src="{{ PUB_DIR }}scripts/deleteConfirmation.js"></script>
 {% endblock %}

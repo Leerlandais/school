@@ -59,6 +59,17 @@ class PageManager extends AbstractManager
     }
 
 
+    public function deletePage(int $pageId) : bool
+    {
+        $stmt = $this->db->prepare("DELETE FROM school_pages WHERE page_id = :pageId");
+        $stmt->bindParam(":pageId", $pageId);
+        $deletePage = $stmt->execute();
+        if(!$deletePage) return false;
+        $stmt->closeCursor();
+        $stmt = $this->db->prepare("DELETE FROM school_blocks WHERE block_page_id = :pageId");
+        $stmt->bindParam(":pageId", $pageId);
+        return $stmt->execute();
+    }
     private function checkIfPageExists(string $pageName) : bool
     {
         $stmt = $this->db->prepare("SELECT * FROM school_pages WHERE page_name = :pageName");

@@ -96,7 +96,13 @@ class PageController extends Abstract\AbstractController
         $mainThemes = $this->mainThemeManager->getThemes();
         $subThemes = $this->subThemeManager->getSubThemes();
         $pages = $this->pageManager->selectAllPages();
-
+        if(isset($_POST["unset:deletePage"])) {
+            $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+            $cleanedData = $this->preparePostData($_POST);
+            $deletePage = $this->pageManager->deletePage($cleanedData["page_id"]);
+            $_SESSION["systemMessage"] = $deletePage ? "Page deleted" : "An error occurred";
+            header("Location: ?route=home");
+        }
         echo $this->twig->render("public/page.view.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,

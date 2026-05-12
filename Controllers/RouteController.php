@@ -3,9 +3,7 @@ namespace Controllers;
 use    model\Manager\RouteManager;
 
 $notesForTomorrow = [
-    1 => "Create a form for BuildPage",
-    2 => "Create a display for the ongoing page",
-    3 => "Add a link to view the page",
+
     4 => "Add a link to edit the page",
     5 => "Add a link to delete the page",
     6 => "Add a method to insert a new line on the page",
