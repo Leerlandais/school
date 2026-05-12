@@ -3,9 +3,6 @@ namespace Controllers;
 use    model\Manager\RouteManager;
 
 $notesForTomorrow = [
-
-    4 => "Add a link to edit the page",
-    5 => "Add a link to delete the page",
     6 => "Add a method to insert a new line on the page",
 ];
 // die(var_dump($notesForTomorrow));
