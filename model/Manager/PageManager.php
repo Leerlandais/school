@@ -70,6 +70,23 @@ class PageManager extends AbstractManager
         $stmt->bindParam(":pageId", $pageId);
         return $stmt->execute();
     }
+
+    public function getBlockDetails(int $blockId) : ?SchoolBlocksMapping
+    {
+        $stmt = $this->db->prepare("SELECT * FROM school_blocks WHERE block_id = :blockId");
+        $stmt->bindParam(":blockId", $blockId);
+        $stmt->execute();
+        $block = $stmt->fetch();
+        if($block) return new SchoolBlocksMapping($block);
+        return null;
+    }
+
+    public function editCurrentBlock(array $data) : bool
+    {
+        $id = $data["block_id"];
+        unset($data["block_id"]);
+        return $this->updateAnything($data, "block_id", $id,"school_blocks");
+    }
     private function checkIfPageExists(string $pageName) : bool
     {
         $stmt = $this->db->prepare("SELECT * FROM school_pages WHERE page_name = :pageName");

@@ -23,7 +23,7 @@ $router->registerRoute("addSubTheme", SubThemeController::class, "addSubTheme");
 $router->registerRoute("addPage", PageController::class, "addPage");
 $router->registerRoute("addNewTag", SchoolTagsController::class, "addNewTag");
 $router->registerRoute("buildPage", PageController::class, "buildPage");
-
+$router->registerRoute('editBlock', PageController::class, 'editBlock');
 
 
 // Handle request

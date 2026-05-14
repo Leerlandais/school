@@ -1,0 +1,40 @@
+{% extends "template.html.twig" %}
+
+{% block title %}{{ parent() }}| Edit Block{% endblock %}
+{% block content %}
+    <form method="post" class="ms-12">
+
+    <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}" required>
+    <input type="hidden" name="int:block_id" value="{{ block.getBlockId }}">
+    <div class="flex flex-row items-center gap-x-4">
+        <label for="htmlTagName">Tag :</label>
+        <select name="int:block_html_tag"
+                id="htmlTagName" class="select-standard"
+                required>
+            <option value="4">p</option>
+            {% for tag in tags %}
+                <option value="{{ tag.getTagId }}" {% if tag.getTagId == block.getBlockHtmlTag %}selected{% endif %}>{{ tag.getTagName }}</option>
+            {% endfor %}
+        </select>
+        <label for="htmlClass">Class</label>
+        <input type="text"
+               name="str:block_class"
+               id="htmlClass"
+               value="{{ block.getBlockClass }}"
+               class="input-standard w-[15%]" required>
+        <label for="htmlText">Text</label>
+        <input type="text"
+               name="str:block_content"
+               id="htmlText"
+               class="input-standard w-[60%]"
+               value="{{ block.getBlockContent }}"
+               required>
+    </div>
+    <button class="px-4 py-1 bg-blue-400 rounded-md
+                            text-black text-sm sm:text-lg shadow-md mb-4"
+            name="unset:editBlock"
+            type="submit">
+        Edit
+    </button>
+    </form>
+{% endblock %}

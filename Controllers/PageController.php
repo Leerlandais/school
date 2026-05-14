@@ -113,4 +113,30 @@ class PageController extends Abstract\AbstractController
             "subThemes" => $subThemes,
         ]);
     }
+
+    public function editBlock(array $getParams) : void
+    {
+        global $sessionRole, $systemMessage;
+        $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+        $blockId = $this->intClean($getParams["id"]);
+        $blockDetails = $this->pageManager->getBlockDetails($blockId);
+        $tags = $this->schoolTagsManager->getAllTags();
+        $pageDetails = $this->pageManager->getPageDetails($blockDetails->getBlockPageId());
+        if(isset($_POST["unset:editBlock"])) {
+            $cleanedData = $this->preparePostData($_POST);
+            $editBlock = $this->pageManager->editCurrentBlock($cleanedData);
+            if(!$editBlock) {
+                $_SESSION["systemMessage"] = "Problem editing block";
+            }
+            header("Location: ?route=buildPage&pageId=" . $blockDetails->getBlockPageId());
+        }
+        echo $this->twig->render("private/page.block.edit.html.twig", [
+            "systemMessage" => $systemMessage,
+            "sessionRole" => $sessionRole,
+            "block" => $blockDetails,
+            "tags" => $tags,
+            "pageDetails" => $pageDetails,
+            "csrfToken" => $this->csrfToken,
+        ]);
+    }
 }

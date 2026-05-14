@@ -14,7 +14,8 @@
         </div>
         <form method="post" class="ms-12">
         {% for block in pageBlocks %}
-            <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
+            <{{ block.getTagName }} class="{{ block.getBlockClass }}">
+            <a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a>
             {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
             {% if loop.last %}
                 <input type="hidden" name="int:block_position" value="{{ block.getBlockPosition +100 }}">
@@ -37,13 +38,12 @@
                 <input type="text"
                        name="str:block_class"
                        id="htmlClass"
-                       class="input-standard w-[15%]" required>
+                       class="input-standard w-[15%]">
                 <label for="htmlText">Text</label>
                 <input type="text"
                        name="str:block_content"
                        id="htmlText"
-                       class="input-standard w-[60%]"
-                       required>
+                       class="input-standard w-[60%]">
             </div>
             <button class="px-4 py-1 bg-blue-400 rounded-md
                             text-black text-sm sm:text-lg shadow-md mb-4"
