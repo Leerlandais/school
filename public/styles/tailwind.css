@@ -4,11 +4,11 @@
 /* Personalised TW Classes go here */
 
 .head-1-center {
-    @apply text-center text-4xl font-bold;
+    @apply text-center text-4xl font-bold my-6;
 }
 
 .head-2-left {
-    @apply text-left text-2xl font-bold;
+    @apply text-left text-2xl font-bold ps-6;
 }
 
 .input-standard {
@@ -31,7 +31,7 @@
 }
 
 .p-standard {
-    @apply px-6 py-2 text-sm text-gray-900 leading-tight font-semibold text-left;
+    @apply py-2 text-sm text-gray-900 leading-tight font-semibold text-left ps-12;
 }
 
 .button-standard {

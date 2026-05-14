@@ -2,10 +2,12 @@
 
 {% block title %}{{ parent() }} | View{% endblock %}
 {% block content %}
+
     {% for block in pageBlocks %}
         <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
         {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
     {% endfor %}
+
 {% endblock %}
 {% block footer %}
     {% if "ROLE_ADMIN" in sessionRole %}
