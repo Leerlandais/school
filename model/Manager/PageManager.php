@@ -53,8 +53,12 @@ class PageManager extends AbstractManager
         return $blocks;
     }
 
-    public function addNewBlock(array $data)
+    public function addNewBlock(array $data) : bool
     {
+        $tagId = $data["block_html_tag"];
+        if($data["block_class"] === "-default") {
+            $data["block_class"] = $this->getTagName($tagId) . $data["block_class"];
+        }
         return $this->insertAnything($data, "school_blocks");
     }
 
@@ -93,5 +97,14 @@ class PageManager extends AbstractManager
         $stmt->bindParam(":pageName", $pageName);
         $stmt->execute();
         return $stmt->rowCount() > 0;
+    }
+
+    private function getTagName(int $tagId) : string
+    {
+        $stmt = $this->db->prepare("SELECT tag_name FROM school_tags WHERE tag_id = :tagId");
+        $stmt->bindParam(":tagId", $tagId);
+        $stmt->execute();
+        $tag = $stmt->fetch();
+        return $tag["tag_name"];
     }
 }

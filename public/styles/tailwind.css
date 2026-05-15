@@ -3,12 +3,20 @@
 @tailwind utilities;
 /* Personalised TW Classes go here */
 
-.head-1-center {
+.h1-default {
     @apply text-center text-4xl font-bold my-6;
 }
 
-.head-2-left {
-    @apply text-left text-2xl font-bold ps-6;
+.h2-default {
+    @apply text-left text-2xl font-bold ps-6 my-4;
+}
+
+.p-default {
+    @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-12;
+}
+
+.indented {
+    @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-20;
 }
 
 .input-standard {
@@ -28,10 +36,6 @@
 .admin-button-standard {
     @apply h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300
     hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100;
-}
-
-.p-standard {
-    @apply py-2 text-sm text-gray-900 leading-tight font-semibold text-left ps-12;
 }
 
 .button-standard {

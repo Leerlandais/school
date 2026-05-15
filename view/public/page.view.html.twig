@@ -11,8 +11,8 @@
 {% endblock %}
 {% block footer %}
     {% if "ROLE_ADMIN" in sessionRole %}
-    <p class="mx-auto text-center font-bold"><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}" class="italic">Edit</a> this page</p>
-        <form method="post">
+    <p class="mx-auto my-8 text-center font-bold"><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}" class="italic">Edit</a> this page</p>
+        <form method="post" class="my-8">
             <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}">
             <input type="hidden" name="int:page_id" value="{{ pageDetails.getPageId }}">
             <button type="submit" name="unset:deletePage" id="delButton" class="button-standard">Delete this page</button>

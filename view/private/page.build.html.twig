@@ -14,7 +14,7 @@
         </div>
         <form method="post" class="ms-12">
         {% for block in pageBlocks %}
-            <{{ block.getTagName }} class="{{ block.getBlockClass }}">
+            <{{ block.getTagName }} {% if block.getTagName != "br" and block.getTagName != "hr" %} class="{{ block.getBlockClass }}"{% endif %}>
             <a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a>
             {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
             {% if loop.last %}
@@ -27,7 +27,8 @@
             <div class="flex flex-row items-center gap-x-4">
                 <label for="htmlTagName">Tag :</label>
                 <select name="int:block_html_tag"
-                        id="htmlTagName" class="select-standard"
+                        id="htmlTagName"
+                        class="select-standard"
                         required>
                     <option value="4">p</option>
                     {% for tag in tags %}
@@ -38,6 +39,7 @@
                 <input type="text"
                        name="str:block_class"
                        id="htmlClass"
+                       value="-default"
                        class="input-standard w-[15%]">
                 <label for="htmlText">Text</label>
                 <input type="text"
