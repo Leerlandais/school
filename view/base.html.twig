@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     {% block head %}
-        {% block meta %}{% endblock %}
+        {% block meta %}
+            <meta property="og:title" content="English Classes by Leerlandais">
+            <meta property="og:description" content="A collection of courses for English language learners">
+            <meta property="og:image" content="https://leerlandais.com/favicon.ico">
+            <meta property="og:url" content="https://leerlandais.com/school">
+            <meta property="og:type" content="website">
+        {% endblock %}
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheet %}{% endblock %}
     {% endblock %}
