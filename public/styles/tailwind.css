@@ -23,6 +23,14 @@
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-12 mb-0.5;
 }
 
+.p-small {
+    @apply text-sm text-gray-900 leading-tight font-semibold text-left ps-12;
+}
+
+.p-small-indented {
+    @apply text-sm text-gray-900 leading-tight font-semibold text-left ps-20;
+}
+
 .indented {
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-20;
 }

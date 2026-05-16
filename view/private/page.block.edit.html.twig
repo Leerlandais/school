@@ -11,7 +11,7 @@
         <select name="int:block_html_tag"
                 id="htmlTagName" class="select-standard"
                 required>
-            <option value="4">p</option>
+            <option value="17">p</option>
             {% for tag in tags %}
                 <option value="{{ tag.getTagId }}" {% if tag.getTagId == block.getBlockHtmlTag %}selected{% endif %}>{{ tag.getTagName }}</option>
             {% endfor %}
