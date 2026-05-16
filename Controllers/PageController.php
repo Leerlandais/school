@@ -68,7 +68,8 @@ class PageController extends Abstract\AbstractController
         $pageDetails = $this->pageManager->getPageDetails($pageId);
         $pageBlocks = $this->pageManager->getPageBlocks($pageId);
         $tags = $this->schoolTagsManager->getAllTags();
-
+        $blockForce = null;
+        if(isset($getParams["forceAt"])) $blockForce = $this->intClean($getParams["forceAt"]);
         if(isset($_POST["unset:addNewBlock"])) {
             $cleanedData = $this->preparePostData($_POST);
             $addNewBlock = $this->pageManager->addNewBlock($cleanedData);
@@ -84,6 +85,7 @@ class PageController extends Abstract\AbstractController
             "pageDetails" => $pageDetails,
             "pageBlocks" => $pageBlocks,
             "tags" => $tags,
+            "blockForce" => $blockForce,
         ]);
     }
 
