@@ -11,8 +11,16 @@
     @apply text-left text-2xl font-bold ps-6 my-4;
 }
 
+.h3-default {
+    @apply text-left text-xl font-bold ps-6 my-4;
+}
+
 .p-default {
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-12;
+}
+
+.p-heading {
+    @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-12 mb-0.5;
 }
 
 .indented {

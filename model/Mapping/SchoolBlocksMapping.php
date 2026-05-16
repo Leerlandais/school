@@ -58,7 +58,7 @@ class SchoolBlocksMapping extends AbstractMapping
 
     public function getBlockContent(): string
     {
-        return  $this->block_content;
+        return  htmlspecialchars_decode($this->block_content);
     }
 
     public function setBlockContent(string $block_content): void
