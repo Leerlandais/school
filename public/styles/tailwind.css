@@ -59,6 +59,17 @@
     text-black text-sm sm:text-lg shadow-md mb-4;
 }
 
+.ul-default {
+    @apply list-disc list-inside
+}
+.ol-default {
+    @apply list-decimal list-inside
+}
+
+.li-default {
+    @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-20;
+}
+
 .footer-default {
     @apply text-center text-sm text-gray-600
 }

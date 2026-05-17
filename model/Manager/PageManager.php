@@ -59,7 +59,7 @@ class PageManager extends AbstractManager
         if($data["block_class"] === "-default") {
             $data["block_class"] = $this->getTagName($tagId) . $data["block_class"];
         }
-        if($this->checkForSpecial($tagId)) unset($data["block_class"], $data["block_content"]);
+        if($this->checkForSpecial($tagId)) unset($data["block_class"]);
         return $this->insertAnything($data, "school_blocks");
     }
 
