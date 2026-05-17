@@ -20,6 +20,7 @@ class SchoolTagsManager extends AbstractManager
 
     public function addNewTag(array $data) : bool
     {
+        if($data["tag_special"]) $data["tag_no_close"] = 1;
         if($this->checkForExistingTag($data["tag_name"])) return false;
         return $this->insertAnything($data, "school_tags");
     }

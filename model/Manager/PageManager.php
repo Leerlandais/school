@@ -39,7 +39,7 @@ class PageManager extends AbstractManager
 
     public function getPageBlocks(int $pageId) : ?array
     {
-        $stmt = $this->db->prepare("SELECT sb.*, st.tag_name, st.tag_no_close 
+        $stmt = $this->db->prepare("SELECT sb.*, st.tag_name, st.tag_no_close, st.tag_special 
                                             FROM school_blocks sb
                                             LEFT JOIN school_tags st ON sb.block_html_tag = st.tag_id
                                             WHERE block_page_id = :pageId ORDER BY sb.block_position ASC");
@@ -59,6 +59,7 @@ class PageManager extends AbstractManager
         if($data["block_class"] === "-default") {
             $data["block_class"] = $this->getTagName($tagId) . $data["block_class"];
         }
+        if($this->checkForSpecial($tagId)) unset($data["block_class"], $data["block_content"]);
         return $this->insertAnything($data, "school_blocks");
     }
 
@@ -113,5 +114,14 @@ class PageManager extends AbstractManager
         $stmt->execute();
         $tag = $stmt->fetch();
         return $tag["tag_name"];
+    }
+
+    private function checkForSpecial(int $tagId) : bool
+    {
+        $stmt = $this->db->prepare("SELECT tag_special FROM school_tags WHERE tag_id = :tagId");
+        $stmt->bindParam(":tagId", $tagId);
+        $stmt->execute();
+        $tag = $stmt->fetch();
+        return $tag["tag_special"] === 1;
     }
 }

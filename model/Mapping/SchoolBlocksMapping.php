@@ -15,6 +15,7 @@ class SchoolBlocksMapping extends AbstractMapping
 
     private ?string $tag_name;
     private ?bool $tag_no_close;
+    private ?bool $tag_special;
 
     public function getBlockId(): int
     {
@@ -94,6 +95,16 @@ class SchoolBlocksMapping extends AbstractMapping
     public function setTagNoClose(?bool $tag_no_close): void
     {
         $this->tag_no_close = $tag_no_close;
+    }
+
+    public function getTagSpecial(): ?bool
+    {
+        return $this->tag_special;
+    }
+
+    public function setTagSpecial(?bool $tag_special): void
+    {
+        $this->tag_special = $tag_special;
     }
 
 
