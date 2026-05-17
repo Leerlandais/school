@@ -27,6 +27,10 @@
     @apply text-sm text-gray-900 leading-tight font-semibold text-left ps-12;
 }
 
+.p-block {
+    @apply block min-h-[30px];
+}
+
 .p-small-indented {
     @apply text-sm text-gray-900 leading-tight font-semibold text-left ps-20;
 }
