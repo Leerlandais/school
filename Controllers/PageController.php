@@ -78,6 +78,7 @@ class PageController extends Abstract\AbstractController
             }
             header("Location: ?route=buildPage&pageId=$pageId");
         }
+
         echo $this->twig->render("private/page.build.html.twig", [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
@@ -89,6 +90,17 @@ class PageController extends Abstract\AbstractController
         ]);
     }
 
+    public function deleteBlock(array $getParams) : void
+    {
+        global $sessionRole, $systemMessage;
+        $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+        $blockId = $this->intClean($getParams["id"]);
+        $pageId = $this->intClean($getParams["pageId"]);
+        $deleteBlock = $this->pageManager->deleteBlock($blockId);
+        $_SESSION["systemMessage"] = $deleteBlock ? "Block deleted" : "An error occurred";
+        header("Location: ?route=buildPage&pageId=" . $pageId);
+        exit();
+    }
     public function viewPage(array $getParams) : void
     {
         global $sessionRole, $systemMessage;

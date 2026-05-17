@@ -4,7 +4,7 @@
 {% block content %}
 
     {% for block in pageBlocks %}
-        <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
+        <{{ block.getTagName }}{% if block.getTagName != "br" and block.getTagName != "hr" %} class="{{ block.getBlockClass }}"{% endif %}>{{ block.getBlockContent }}
         {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
     {% endfor %}
 

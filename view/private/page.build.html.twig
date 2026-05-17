@@ -16,6 +16,7 @@
         {% for block in pageBlocks %}
             <{{ block.getTagName }} {% if block.getTagName != "br" and block.getTagName != "hr" %} class="{{ block.getBlockClass }}"{% endif %}>
             <a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a>
+            <a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}"><span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span></a>
             {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
             {% if loop.last %}
                 <input type="hidden" name="int:block_position" value="{% if blockForce %}{{ blockForce }}{% else %}{{ block.getBlockPosition +100 }}{% endif %}">

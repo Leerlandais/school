@@ -62,6 +62,13 @@ class PageManager extends AbstractManager
         return $this->insertAnything($data, "school_blocks");
     }
 
+    public function deleteBlock(int $blockId) : bool
+    {
+        $stmt = $this->db->prepare("DELETE FROM school_blocks WHERE block_id = :blockId");
+        $stmt->bindParam(":blockId", $blockId);
+        return $stmt->execute();
+    }
+
 
     public function deletePage(int $pageId) : bool
     {
