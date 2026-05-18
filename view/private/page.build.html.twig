@@ -10,13 +10,14 @@
         </div>
     {% else %}
         <div class="mt-16 mb-6">
-            <h1 class="head-1-center underline">Building {{ pageDetails.getPageName }}</h1>
+            <h1 class="head-1-center underline"><a href="?route=viewPage&id={{ pageDetails.getPageId }}">Building {{ pageDetails.getPageName }}</a></h1>
         </div>
         <form method="post" class="ms-12">
         {% for block in pageBlocks %}
             {% if block.getTagSpecial == 1 %}
                 <br>
-            <{{ block.getTagName|raw }}>{% if "li-default" in block.getTagName %}<a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a>{% else %}{{ block.getTagName|raw }} here{% endif%} <a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a><a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}"><span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span></a>
+            <{{ block.getTagName|raw }}>
+                {% if block.getTagName matches '/li-default/' %}<a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a>{% else %}<a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getTagName|raw }}</a> here{% endif%} <a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a><a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}"><span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span></a>
             {% else %}
             <{{ block.getTagName }} class="{{ block.getBlockClass }}">
             <a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a>

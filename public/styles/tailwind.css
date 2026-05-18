@@ -11,6 +11,10 @@
     @apply text-left text-2xl font-bold ps-6 my-4;
 }
 
+.h2-center {
+    @apply text-center text-2xl font-bold my-4;
+}
+
 .h3-default {
     @apply text-left text-xl font-bold ps-6 my-4;
 }
@@ -50,7 +54,7 @@
     @apply w-fit border border-blue-400
     outline-blue-800 px-4 py-2 text-sm
     rounded-md my-2 bg-white dark:bg-gray-700
-    text-gray-900 dark:text-white
+    text-gray-900 dark:text-white;
 }
 
 .admin-button-standard {
@@ -64,16 +68,29 @@
 }
 
 .ul-default {
-    @apply list-disc list-inside
+    @apply list-disc list-inside;
+}
+
+.ul-row {
+    @apply list-disc list-inside flex flex-row ps-20 gap-x-4;
 }
 .ol-default {
-    @apply list-decimal list-inside
+    @apply list-decimal list-inside;
+}
+
+.ol-row {
+    @apply list-decimal list-inside flex flex-row ps-20 gap-x-4;
 }
 
 .li-default {
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-20;
 }
 
+.li-row {
+    @apply text-lg text-gray-900 leading-tight font-semibold text-left;
+}
+
+
 .footer-default {
-    @apply text-center text-sm text-gray-600
+    @apply text-center text-sm text-gray-600;
 }

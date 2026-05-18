@@ -2,7 +2,6 @@
 
 {% block title %}{{ parent() }} | View{% endblock %}
 {% block content %}
-
     {% for block in pageBlocks %}
         <{{ block.getTagName }}{% if block.getTagName != "br" and block.getTagName != "hr" %} class="{{ block.getBlockClass }}"{% endif %}>{{ block.getBlockContent }}
         {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
@@ -18,6 +17,7 @@
             <button type="submit" name="unset:deletePage" id="delButton" class="button-standard">Delete this page</button>
         </form>
     {% endif %}
+
 {% endblock %}
 
 {% block javascript %}
