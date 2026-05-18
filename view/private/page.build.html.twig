@@ -10,57 +10,81 @@
         </div>
     {% else %}
         <div class="mt-16 mb-6">
-            <h1 class="head-1-center underline"><a href="?route=viewPage&id={{ pageDetails.getPageId }}">Building {{ pageDetails.getPageName }}</a></h1>
+            <h1 class="head-1-center underline"><a
+                        href="?route=viewPage&id={{ pageDetails.getPageId }}">Building {{ pageDetails.getPageName }}</a>
+            </h1>
         </div>
         <form method="post" class="ms-12">
         {% for block in pageBlocks %}
             {% if block.getTagSpecial == 1 %}
                 <br>
-            <{{ block.getTagName|raw }}>
-                {% if block.getTagName matches '/li-default/' %}<a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a>{% else %}<a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getTagName|raw }}</a> here{% endif%} <a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a><a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}"><span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span></a>
+                <{{ block.getTagName|raw }}>
+                {% if block.getTagName matches '/li-default|li-row/' %}
+                    <a href="?route=editBlock&id={{ block.getBlockId }}">
+                        {{ block.getBlockContent }}
+                    </a>
+                {% else %}
+                    <a href="?route=editBlock&id={{ block.getBlockId }}">
+                        {{ block.getTagName|raw }}
+                    </a> here
+                {% endif %}
+                <a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}">
+                    <span class="ms-2" style='font-size:20px;'>&#8593;</span>
+                </a>
+                <a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}">
+                    <span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span>
+                </a>
             {% else %}
-            <{{ block.getTagName }} class="{{ block.getBlockClass }}">
-            <a href="?route=editBlock&id={{ block.getBlockId }}">{{ block.getBlockContent }}</a><a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}"><span class="ms-2" style='font-size:20px;'>&#8593;</span></a>
-            <a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}"><span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span></a>
-            {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
+                <{{ block.getTagName }} class="{{ block.getBlockClass }}">
+                <a href="?route=editBlock&id={{ block.getBlockId }}">
+                    {{ block.getBlockContent }}
+                </a>
+                <a href="?route=buildPage&pageId={{ pageDetails.getPageId }}&forceAt={{ block.getBlockPosition - 1 }}">
+                    <span class="ms-2" style='font-size:20px;'>&#8593;</span>
+                </a>
+                <a href="?route=deleteBlock&id={{ block.getBlockId }}&pageId={{ pageDetails.getPageId }}">
+                    <span style='font-size:20px;' class="ms-2 max-h-4">&#10005;</span>
+                </a>
+                {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
             {% endif %}
             {% if loop.last %}
-                <input type="hidden" name="int:block_position" value="{% if blockForce %}{{ blockForce }}{% else %}{{ block.getBlockPosition +100 }}{% endif %}">
+                <input type="hidden" name="int:block_position"
+                       value="{% if blockForce %}{{ blockForce }}{% else %}{{ block.getBlockPosition +100 }}{% endif %}">
             {% endif %}
         {% endfor %}
 
 
-            <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}" required>
-            <input type="hidden" name="int:block_page_id" value="{{ pageDetails.getPageId }}">
-            <div class="flex flex-row items-center gap-x-4">
-                <label for="htmlTagName">Tag :</label>
-                <select name="int:block_html_tag"
-                        id="htmlTagName"
-                        class="select-standard"
-                        required autofocus>
-                    <option value="17">p</option>
-                    {% for tag in tags %}
-                        <option value="{{ tag.getTagId }}">{{ tag.getTagName|raw }}</option>
-                    {% endfor %}
-                </select>
-                <label for="htmlClass">Class</label>
-                <input type="text"
-                       name="str:block_class"
-                       id="htmlClass"
-                       value="-default"
-                       class="input-standard w-[15%]">
-                <label for="htmlText">Text</label>
-                <input type="text"
-                       name="str:block_content"
-                       id="htmlText"
-                       class="input-standard w-[60%]">
-            </div>
-            <button class="px-4 py-1 bg-blue-400 rounded-md
+        <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}" required>
+        <input type="hidden" name="int:block_page_id" value="{{ pageDetails.getPageId }}">
+        <div class="flex flex-row items-center gap-x-4">
+            <label for="htmlTagName">Tag :</label>
+            <select name="int:block_html_tag"
+                    id="htmlTagName"
+                    class="select-standard"
+                    required autofocus>
+                <option value="17">p</option>
+                {% for tag in tags %}
+                    <option value="{{ tag.getTagId }}">{{ tag.getTagName|raw }}</option>
+                {% endfor %}
+            </select>
+            <label for="htmlClass">Class</label>
+            <input type="text"
+                   name="str:block_class"
+                   id="htmlClass"
+                   value="-default"
+                   class="input-standard w-[15%]">
+            <label for="htmlText">Text</label>
+            <input type="text"
+                   name="str:block_content"
+                   id="htmlText"
+                   class="input-standard w-[60%]">
+        </div>
+        <button class="px-4 py-1 bg-blue-400 rounded-md
                             text-black text-sm sm:text-lg shadow-md mb-4"
-                    name="unset:addNewBlock"
-                    type="submit">
-                Add
-            </button>
+                name="unset:addNewBlock"
+                type="submit">
+            Add
+        </button>
         </form>
     {% endif %}
 {% endblock %}
