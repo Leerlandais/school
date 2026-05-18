@@ -11,7 +11,7 @@ class PageManager extends AbstractManager
     public function addNewPage(array $data) : ?int
     {
 
-        if($this->checkIfPageExists($data["page_name"])) return null;
+        if($this->checkIfPageExists($data)) return null;
         $data["page_created"] = date("Y-m-d H:i:s");
         return $this->insertAnything($data, "school_pages", "db", true);
     }
@@ -99,12 +99,15 @@ class PageManager extends AbstractManager
         unset($data["block_id"]);
         return $this->updateAnything($data, "block_id", $id,"school_blocks");
     }
-    private function checkIfPageExists(string $pageName) : bool
+    private function checkIfPageExists(array $pageDataNew) : bool
     {
+        $pageName = $pageDataNew["page_name"];
         $stmt = $this->db->prepare("SELECT * FROM school_pages WHERE page_name = :pageName");
         $stmt->bindParam(":pageName", $pageName);
         $stmt->execute();
-        return $stmt->rowCount() > 0;
+        $pageData = $stmt->fetch();
+        if(empty($pageData)) return false;
+        return $pageData["page_parent"] === $pageDataNew["page_parent"];
     }
 
     private function getTagName(int $tagId) : string

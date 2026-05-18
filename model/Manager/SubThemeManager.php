@@ -9,7 +9,7 @@ class SubThemeManager extends AbstractManager
 {
     public function addSubTheme(array $data) : bool
     {
-        if($this->checkIfSubThemeExists($data["subcat_name"])) return false;
+        if($this->checkIfSubThemeExists($data)) return false;
         return $this->insertAnything($data, "school_page_subcats");
     }
 
@@ -24,11 +24,15 @@ class SubThemeManager extends AbstractManager
         return $subCats;
     }
 
-    private function checkIfSubThemeExists(string $subCatName) : bool
+    private function checkIfSubThemeExists(array $subCatNew) : bool
     {
+
+        $subCatName = $subCatNew["subcat_name"];
         $stmt = $this->db->prepare("SELECT * FROM school_page_subcats WHERE subcat_name = :subCatName");
         $stmt->bindParam(":subCatName", $subCatName);
         $stmt->execute();
-        return $stmt->rowCount() === 1;
+        $subCat = $stmt->fetch();
+        if(empty($subCat)) return false;
+        return $subCat["subcat_parent"] === $subCatNew["subcat_parent"];
     }
 }

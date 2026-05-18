@@ -44,7 +44,7 @@
                         <select class="select-standard w-full" name="int:page_parent" id="pageParent" required>
                             <option value=""></option>
                             {% for theme in subThemes %}
-                                <option value="{{ theme.getSubcatId }}">{{ theme.getSubcatName }}</option>
+                                <option value="{{ theme.getSubcatId }}">{{ theme.getSubcatName }} - {{ theme.getSubcatParent }}</option>
                             {% endfor %}
                         </select>
                     </div>
