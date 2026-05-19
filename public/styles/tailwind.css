@@ -19,6 +19,10 @@
     @apply text-left text-xl font-bold ps-6 my-4;
 }
 
+.h3-center {
+    @apply text-center text-xl font-bold my-4;
+}
+
 .p-default {
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-12;
 }
@@ -41,6 +45,10 @@
 
 .indented {
     @apply text-lg text-gray-900 leading-tight font-semibold text-left ps-20;
+}
+
+.indent {
+    @apply ps-20;
 }
 
 .input-standard {
