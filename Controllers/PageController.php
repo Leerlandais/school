@@ -6,6 +6,7 @@ use Controllers\Abstract\AbstractController;
 use Factory\ManagerFactory;
 use model\Manager\MainThemeManager;
 use model\Manager\PageManager;
+use model\Manager\SchoolActiveManager;
 use model\Manager\SchoolTagsManager;
 use model\Manager\SubThemeManager;
 use Twig\Environment;
@@ -16,6 +17,7 @@ class PageController extends Abstract\AbstractController
     private SubThemeManager $subThemeManager;
     private MainThemeManager $mainThemeManager;
     private SchoolTagsManager $schoolTagsManager;
+    private SchoolActiveManager $schoolActiveManager;
 
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
     {
@@ -24,6 +26,7 @@ class PageController extends Abstract\AbstractController
         $this->subThemeManager = $this->getManager(SubThemeManager::class);
         $this->mainThemeManager = $this->getManager(MainThemeManager::class);
         $this->schoolTagsManager = $this->getManager(SchoolTagsManager::class);
+        $this->schoolActiveManager = $this->getManager(SchoolActiveManager::class);
     }
 
     public function addPage() : void
@@ -104,6 +107,11 @@ class PageController extends Abstract\AbstractController
     public function viewPage(array $getParams) : void
     {
         global $sessionRole, $systemMessage;
+        $testSiteActive = $this->schoolActiveManager->checkIfActive();
+        if(!$testSiteActive) {
+            $this->siteClosed();
+            exit();
+        }
         $pageId = $this->intClean($getParams["id"]);
         $pageDetails = $this->pageManager->getPageDetails($pageId);
         $pageBlocks = $this->pageManager->getPageBlocks($pageId);

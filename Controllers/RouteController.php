@@ -26,6 +26,7 @@ $router->registerRoute("buildPage", PageController::class, "buildPage");
 $router->registerRoute('editBlock', PageController::class, 'editBlock');
 $router->registerRoute('deleteBlock', PageController::class, 'deleteBlock');
 
+$router->registerRoute('changeStatus', AdminController::class, 'changeStatus');
 
 // Handle request
 $route = $_GET['route'] ?? 'home';

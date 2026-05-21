@@ -165,4 +165,12 @@ abstract class AbstractController
         }
         return $_SESSION['csrf_token'];
     }
+
+    protected function siteClosed(): void
+    {
+        global $sessionRole;
+        echo $this->twig->render("public/public.siteClosed.html.twig", [
+            "sessionRole" => $sessionRole
+        ]);
+    }
 }
