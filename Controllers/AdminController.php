@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Controllers\Abstract\AbstractController;
 use Factory\ManagerFactory;
+use model\Manager\ConnectionManager;
 use model\Manager\MainThemeManager;
 use model\Manager\PageManager;
 use model\Manager\SchoolActiveManager;
@@ -15,6 +16,7 @@ class AdminController extends Abstract\AbstractController
     private MainThemeManager $mainThemeManager;
     private SubThemeManager $subThemeManager;
     private PageManager $pageManager;
+    private ConnectionManager $connectionManager;
 
     private SchoolActiveManager $schoolActiveManager;
     public function __construct(Environment $twig, ManagerFactory $managerFactory)
@@ -24,7 +26,7 @@ class AdminController extends Abstract\AbstractController
         $this->subThemeManager = $this->getManager(SubThemeManager::class);
         $this->pageManager = $this->getManager(PageManager::class);
         $this->schoolActiveManager = $this->getManager(SchoolActiveManager::class);
-
+        $this->connectionManager = $this->getManager(ConnectionManager::class);
     }
     public function adminControls() : void
     {
@@ -52,5 +54,18 @@ class AdminController extends Abstract\AbstractController
         $_SESSION["siteActive"]++;
         $this->schoolActiveManager->toggleSiteState();
         die();
+    }
+
+    public function visitLogs() : void
+    {
+        global $sessionRole, $systemMessage;
+        $this->checkPermissions("ROLE_ADMIN", $sessionRole);
+
+        $logs = $this->connectionManager->getVisitLogs();
+        echo $this->twig->render('private/private.visitLogs.html.twig', [
+            "sessionRole" => $sessionRole,
+            "systemMessage" => $systemMessage,
+            "logs" => $logs,
+        ]);
     }
 }

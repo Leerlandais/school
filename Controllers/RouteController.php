@@ -25,7 +25,7 @@ $router->registerRoute("addNewTag", SchoolTagsController::class, "addNewTag");
 $router->registerRoute("buildPage", PageController::class, "buildPage");
 $router->registerRoute('editBlock', PageController::class, 'editBlock');
 $router->registerRoute('deleteBlock', PageController::class, 'deleteBlock');
-
+$router->registerRoute('visitLogs', AdminController::class, 'visitLogs');
 $router->registerRoute('changeStatus', AdminController::class, 'changeStatus');
 
 // Handle request

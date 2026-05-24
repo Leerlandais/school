@@ -3,6 +3,7 @@
 namespace model\Manager;
 use model\Abstract\AbstractManager;
 use model\Mapping\SchoolUsersMapping;
+use model\Mapping\SchoolVisitLogsMapping;
 
 class ConnectionManager extends AbstractManager
 {
@@ -39,5 +40,16 @@ class ConnectionManager extends AbstractManager
     public function recordVisit(array $visitData) : bool
     {
         return $this->insertAnything($visitData, "school_visit_logs");
+    }
+
+    public function getVisitLogs() : ?array
+    {
+        $query = $this->db->query("SELECT * FROM school_visit_logs");
+        $logs = [];
+        while ($data = $query->fetch()) {
+            $logs[] = new SchoolVisitLogsMapping($data);
+        }
+        if(empty($logs)) return null;
+        return $logs;
     }
 }
