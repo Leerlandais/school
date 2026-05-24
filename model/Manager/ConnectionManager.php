@@ -35,5 +35,9 @@ class ConnectionManager extends AbstractManager
 
         return false;
     }
-    
+
+    public function recordVisit(array $visitData) : bool
+    {
+        return $this->insertAnything($visitData, "school_visit_logs");
+    }
 }

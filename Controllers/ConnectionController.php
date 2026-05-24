@@ -44,6 +44,11 @@ class ConnectionController extends Abstract\AbstractController
     public function index() : void
     {
         global $sessionRole, $systemMessage;
+        if(!isset($_SESSION["session_logged"])) {
+            $_SESSION["session_logged"] = false;
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $this->logSiteVisit($ip);
+        }
         $testSiteActive = $this->schoolActiveManager->checkIfActive();
         if(!$testSiteActive) {
             $this->siteClosed();
@@ -82,5 +87,15 @@ class ConnectionController extends Abstract\AbstractController
             'sessionRole' => $sessionRole,
             'csrfToken' => $this->csrfToken
         ]);
+    }
+
+    private function logSiteVisit($ip) : bool
+    {
+        $visitData = [
+            "visit_ip" => $ip,
+            "visit_date" => date("Y-m-d H:i:s"),
+        ];
+        $makeLog = $this->connectionManager->recordVisit($visitData);
+        return $makeLog;
     }
 }
