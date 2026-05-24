@@ -47,7 +47,9 @@ class ConnectionController extends Abstract\AbstractController
         if(!isset($_SESSION["session_logged"])) {
             $_SESSION["session_logged"] = false;
             $ip = $_SERVER['REMOTE_ADDR'];
-            $this->logSiteVisit($ip);
+            if($ip !== MY_CONNECT) {
+                $this->logSiteVisit($ip);
+            }
         }
         $testSiteActive = $this->schoolActiveManager->checkIfActive();
         if(!$testSiteActive) {
