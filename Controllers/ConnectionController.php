@@ -3,6 +3,7 @@
 namespace Controllers;
 
 
+use DateTime;
 use Factory\ManagerFactory;
 use model\Manager\ConnectionManager;
 use model\Manager\MainThemeManager;
@@ -93,9 +94,12 @@ class ConnectionController extends Abstract\AbstractController
 
     private function logSiteVisit($ip) : bool
     {
+        $date = new DateTime();
+        $date->modify("+2 hours");
+
         $visitData = [
             "visit_ip" => $ip,
-            "visit_date" => date("Y-m-d H:i:s"),
+            "visit_date" => $date->format("Y-m-d H:i:s"),
         ];
         $makeLog = $this->connectionManager->recordVisit($visitData);
         return $makeLog;
