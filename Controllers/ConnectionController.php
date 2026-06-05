@@ -92,7 +92,7 @@ class ConnectionController extends Abstract\AbstractController
         ]);
     }
 
-    private function logSiteVisit($ip) : bool
+    private function logSiteVisit($ip) : void
     {
         $date = new DateTime();
         $date->modify("+2 hours");
@@ -101,7 +101,6 @@ class ConnectionController extends Abstract\AbstractController
             "visit_ip" => $ip,
             "visit_date" => $date->format("Y-m-d H:i:s"),
         ];
-        $makeLog = $this->connectionManager->recordVisit($visitData);
-        return $makeLog;
+        $this->connectionManager->recordVisit($visitData);
     }
 }
