@@ -41,12 +41,11 @@ class PageController extends Abstract\AbstractController
             if($insertPage) {
                 $_SESSION["systemMessage"] = "Page added";
                 header("Location: ?route=buildPage&pageId=$insertPage");
-                exit();
             }else {
                 $_SESSION["systemMessage"] = "An error occurred";
                 header("Location: ?route=admin");
-                exit();
             }
+            exit();
 
         }
 
