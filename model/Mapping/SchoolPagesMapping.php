@@ -37,7 +37,7 @@ class SchoolPagesMapping extends AbstractMapping
 
     public function getPageName(): string
     {
-        return $this->page_name;
+        return htmlspecialchars_decode($this->page_name);
     }
 
     public function setPageName(string $page_name): void

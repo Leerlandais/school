@@ -33,7 +33,7 @@ class SchoolPageSubcatsMapping extends AbstractMapping
 
     public function getSubcatName(): string
     {
-        return $this->subcat_name;
+        return htmlspecialchars_decode($this->subcat_name);
     }
 
     public function setSubcatName(string $subcat_name): void
