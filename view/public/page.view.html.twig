@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} | View{% endblock %}
 {% block content %}
     {% for block in pageBlocks %}
-        <{{ block.getTagName }}{% if block.getTagName != "br" and block.getTagName != "hr" %} class="{{ block.getBlockClass }}"{% endif %}>{{ block.getBlockContent }}
+        <{{ block.getTagName }} class="{{ block.getBlockClass }}">{{ block.getBlockContent }}
         {% if block.getTagNoClose == false %}</{{ block.getTagName }}>{% endif %}
     {% endfor %}
 

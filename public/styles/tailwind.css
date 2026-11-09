@@ -102,3 +102,19 @@
 .footer-default {
     @apply text-center text-sm text-gray-600;
 }
+
+.table-default {
+    @apply w-fit text-center table-auto min-w-[50%] mx-auto;
+}
+
+.th-default {
+    @apply p-4 border-b border-blue-400 bg-blue-50 font-sans text-lg text-gray-900;
+}
+
+.p-table {
+    @apply block font-sans text-sm antialiased font-normal leading-none text-gray-900 opacity-70;
+}
+
+.td-default {
+    @apply p-4 border-b border-blue-500 font-sans text-lg text-gray-900;
+}
